@@ -1,0 +1,8 @@
+@import "common";
+
+@import "mobile/_index";
+
+// Import all component-specific files
+@import "mobile/components/_index";
+
+@import "mobile/select-kit/_index";

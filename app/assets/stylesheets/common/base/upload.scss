@@ -1,0 +1,63 @@
+.uploaded-image-preview {
+  background: var(--primary-medium) center;
+  background-size: cover;
+  position: relative;
+
+  .placeholder-overlay {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+  }
+
+  .image-upload-controls {
+    position: relative;
+    display: flex;
+    padding: 10px;
+
+    .btn {
+      margin-right: 5px;
+      padding: 7px 10px;
+    }
+
+    .image-uploader-lightbox-btn {
+      background: none;
+      margin-right: 0;
+      margin-left: auto;
+
+      .d-icon {
+        color: var(--primary-low);
+      }
+
+      &:hover {
+        background: none;
+
+        .d-icon {
+          color: var(--primary);
+        }
+      }
+    }
+  }
+}
+
+.image-uploader.no-repeat {
+  .uploaded-image-preview {
+    background-repeat: no-repeat;
+  }
+}
+
+.image-uploader.contain-image {
+  .uploaded-image-preview {
+    background-size: contain;
+  }
+}
+
+.hidden-upload-field {
+  visibility: hidden;
+  position: absolute;
+}

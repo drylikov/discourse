@@ -1,0 +1,126 @@
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  padding: 0.5em;
+  color: var(--primary-very-high);
+}
+
+.hljs-comment,
+.hljs-doctag {
+  color: var(--hljs-comment);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.javascript .hljs-title,
+.nginx .hljs-title,
+.hljs-subst,
+.hljs-request,
+.hljs-status {
+  color: var(--primary-very-high);
+  font-weight: bold;
+}
+
+.hljs-number,
+.ruby .hljs-constant {
+  color: var(--hljs-number);
+}
+
+.hljs-string,
+.hljs-tag .hljs-string,
+.tex .hljs-formula {
+  color: var(--hljs-string);
+}
+
+.hljs-title,
+.hljs-name,
+.coffeescript .hljs-params,
+.scss .hljs-meta {
+  color: var(--hljs-string);
+  font-weight: bold;
+}
+
+.javascript .hljs-title,
+.lisp .hljs-title,
+.clojure .hljs-title,
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-class .hljs-title,
+.haskell .hljs-type,
+.vhdl .hljs-literal,
+.tex .hljs-command {
+  color: var(--hljs-literal);
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-tag .hljs-title,
+.django .hljs-tag .hljs-keyword {
+  color: var(--hljs-tag);
+  font-weight: normal;
+}
+
+.hljs-attribute,
+.css .hljs-keyword,
+.hljs-variable,
+.lisp .hljs-body {
+  color: var(--hljs-attribute);
+}
+
+.hljs-regexp {
+  color: var(--success);
+}
+
+.hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.lisp .hljs-keyword,
+.tex .hljs-special,
+.hljs-prompt {
+  color: var(--hljs-symbol);
+}
+
+.hljs-built_in,
+.lisp .hljs-title,
+.clojure .hljs-built_in,
+.hljs-builtin-name {
+  color: var(--tertiary-high);
+}
+
+.meta {
+  color: var(--primary-medium);
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: var(--danger-low);
+}
+
+.hljs-addition {
+  background: var(--success-low);
+}
+
+.diff .hljs-meta {
+  color: var(--primary-low);
+}
+
+/*
+--------------------------------------------------------------------------------
+|                       SHOULD NOT BE REMOVED                                  |
+--------------------------------------------------------------------------------
+*/
+
+p > code,
+li > code,
+pre > code {
+  color: var(--primary-very-high);
+  background: var(--hljs-bg);
+}
+
+// removed some unnecessary styles here

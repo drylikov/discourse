@@ -1,0 +1,22 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+th:
+  js:
+    discourse_local_dates:
+      create:
+        form:
+          insert: เพิ่ม
+          advanced_mode: ระดับสูง
+          simple_mode: ระดับพื้นฐาน
+          timezones_title: เขตเวลาที่จะแสดง
+          recurring_title: ซ้ำ
+          recurring_none: ไม่ซ้ำ
+          invalid_date: รูปแบบวันที่ไม่ถูกต้อง, ตรวจให้แน่ใจว่าวันที่และเวลาถูกต้อง
+          date_title: วันที่
+          time_title: เวลา
+          format_title: รูปแบบวันที่
+          timezone: เขตเวลา

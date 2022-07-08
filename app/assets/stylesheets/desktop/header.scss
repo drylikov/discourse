@@ -1,0 +1,43 @@
+// --------------------------------------------------
+// Discourse header
+// --------------------------------------------------
+
+.d-header {
+  left: 0;
+  height: 4em;
+  #site-logo {
+    height: 2.667em; // 40px with default 15px font size
+  }
+  #site-text-logo {
+    font-size: $font-up-3;
+    margin: 0;
+  }
+  .extra-info {
+    &:not(.two-rows) {
+      .header-title {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 570px) {
+  .extra-info-wrapper {
+    display: none;
+  }
+}
+
+#main {
+  position: relative;
+}
+
+.search-link .blurb {
+  color: var(--secondary-medium);
+  display: block;
+  word-wrap: break-word;
+  font-size: $font-down-2;
+  line-height: $line-height-large;
+  .search-highlight {
+    color: var(--primary-high-or-secondary-low);
+  }
+}

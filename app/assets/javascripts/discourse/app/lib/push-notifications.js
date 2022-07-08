@@ -1,0 +1,155 @@
+import KeyValueStore from "discourse/lib/key-value-store";
+import { ajax } from "discourse/lib/ajax";
+import { helperContext } from "discourse-common/lib/helpers";
+
+export const keyValueStore = new KeyValueStore("discourse_push_notifications_");
+
+export function userSubscriptionKey(user) {
+  return `subscribed-${user.get("id")}`;
+}
+
+function sendSubscriptionToServer(subscription, sendConfirmation) {
+  ajax("/push_notifications/subscribe", {
+    type: "POST",
+    data: {
+      subscription: subscription.toJSON(),
+      send_confirmation: sendConfirmation,
+    },
+  });
+}
+
+function resetIdle() {
+  if (
+    "controller" in navigator.serviceWorker &&
+    navigator.serviceWorker.controller != null
+  ) {
+    navigator.serviceWorker.controller.postMessage({ lastAction: Date.now() });
+  }
+}
+
+function setupActivityListeners(appEvents) {
+  window.addEventListener("focus", resetIdle);
+
+  if (document) {
+    document.addEventListener("scroll", resetIdle);
+  }
+
+  appEvents.on("page:changed", resetIdle);
+}
+
+export function isPushNotificationsSupported() {
+  let caps = helperContext().capabilities;
+  if (
+    !(
+      "serviceWorker" in navigator &&
+      typeof ServiceWorkerRegistration !== "undefined" &&
+      typeof Notification !== "undefined" &&
+      "showNotification" in ServiceWorkerRegistration.prototype &&
+      "PushManager" in window &&
+      !caps.isAppWebview &&
+      !caps.isIOS
+    )
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+export function isPushNotificationsEnabled(user) {
+  return (
+    user &&
+    !user.isInDoNotDisturb() &&
+    isPushNotificationsSupported() &&
+    keyValueStore.getItem(userSubscriptionKey(user))
+  );
+}
+
+export function register(user, router, appEvents) {
+  if (!isPushNotificationsSupported()) {
+    return;
+  }
+  if (Notification.permission === "denied" || !user) {
+    return;
+  }
+
+  navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+    serviceWorkerRegistration.pushManager
+      .getSubscription()
+      .then((subscription) => {
+        if (subscription) {
+          sendSubscriptionToServer(subscription, false);
+          // Resync localStorage
+          keyValueStore.setItem(userSubscriptionKey(user), "subscribed");
+        }
+        setupActivityListeners(appEvents);
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      });
+  });
+
+  navigator.serviceWorker.addEventListener("message", (event) => {
+    if ("url" in event.data) {
+      const url = event.data.url;
+      router.handleURL(url);
+    }
+  });
+}
+
+export function subscribe(callback, applicationServerKey) {
+  if (!isPushNotificationsSupported()) {
+    return;
+  }
+
+  navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+    serviceWorkerRegistration.pushManager
+      .subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: new Uint8Array(applicationServerKey.split("|")), // eslint-disable-line no-undef
+      })
+      .then((subscription) => {
+        sendSubscriptionToServer(subscription, true);
+        if (callback) {
+          callback();
+        }
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      });
+  });
+}
+
+export function unsubscribe(user, callback) {
+  if (!isPushNotificationsSupported()) {
+    return;
+  }
+
+  keyValueStore.setItem(userSubscriptionKey(user), "");
+  navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+    serviceWorkerRegistration.pushManager
+      .getSubscription()
+      .then((subscription) => {
+        if (subscription) {
+          subscription.unsubscribe().then((successful) => {
+            if (successful) {
+              ajax("/push_notifications/unsubscribe", {
+                type: "POST",
+                data: { subscription: subscription.toJSON() },
+              });
+            }
+          });
+        }
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      });
+
+    if (callback) {
+      callback();
+    }
+  });
+}

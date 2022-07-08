@@ -1,0 +1,399 @@
+.category-list {
+  table-layout: fixed;
+  .category-text-title {
+    display: flex;
+    align-items: baseline;
+  }
+  .category-name {
+    display: inline-block;
+    max-width: 100%;
+    @include ellipsis;
+    vertical-align: text-top;
+    line-height: $line-height-medium;
+  }
+  &.with-topics {
+    .subcategories-with-subcategories {
+      .category-description {
+        display: none;
+      }
+    }
+  }
+  &.hidden {
+    display: none;
+  }
+}
+
+.navigation-categories .category-list.subcategory-list {
+  margin-bottom: 1em;
+}
+
+.subcategory-list {
+  .parent-category {
+    h3 {
+      display: inline;
+    }
+    .category-text-title {
+      display: inline-flex;
+    }
+    .stat {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+.category-boxes,
+.category-boxes-with-topics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+
+  .category-box {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    box-sizing: border-box;
+    border-width: 0;
+    border-left-width: 6px;
+    border-style: solid;
+    border-color: var(--primary-low);
+
+    .mobile-view & {
+      width: 100%;
+    }
+
+    .parent-box-link {
+      // This avoids an issue with nested links by layering links instead
+      &:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+
+    .logo.aspect-image img {
+      display: block;
+      width: auto;
+      height: 40px;
+      margin: 0 auto 1em auto;
+    }
+
+    @supports (--custom: property) {
+      .logo.aspect-image img {
+        --height: 40px;
+        height: var(--height);
+        width: calc(var(--height) * var(--aspect-ratio));
+        max-width: 100%;
+      }
+    }
+  }
+
+  .category-box-inner {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+
+    border-width: 2px;
+    border-left-width: 0;
+
+    border-style: solid;
+    border-color: var(--primary-low);
+  }
+
+  &.no-logos {
+    .logo {
+      display: none;
+    }
+  }
+}
+
+.category-boxes {
+  .category-box {
+    width: 23%;
+    margin: 0 1% 1.5em 1%;
+    > a {
+      width: 100%;
+      padding: 0;
+    }
+    .category-box-inner {
+      padding: 1em;
+
+      .category-logo {
+        float: none;
+        margin: 0;
+      }
+    }
+  }
+
+  &.no-logos {
+    .category-box .category-box-inner > a {
+      padding: 3em 1em;
+    }
+  }
+
+  .description {
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: $font-0;
+    color: var(--primary-med-or-secondary-high);
+    position: relative;
+    @include line-clamp(4);
+
+    //  allow clicks to fall through the description text to the category below...
+    pointer-events: none;
+    .overflow {
+      max-height: 6em;
+      div a {
+        //  ...but links in description should still be clickable
+        pointer-events: auto;
+      }
+    }
+  }
+
+  h3 {
+    font-size: $font-up-2;
+    margin-bottom: 0.5em;
+    margin-top: 0.25em;
+    line-height: $line-height-medium;
+    text-align: center;
+    color: var(--primary);
+    overflow: hidden;
+  }
+
+  h4 a {
+    color: var(--primary);
+  }
+
+  .subcategory.with-subcategories {
+    position: relative;
+    border: none;
+    border-left-width: 4px;
+    border-left-style: solid;
+    margin-bottom: 0.25em;
+
+    .category-title-link {
+      display: flex;
+      .category-logo {
+        flex: 1 0 auto;
+        margin: 0.25em 0.5em 0.5em 0;
+        --max-height: 40px;
+      }
+      .category-text-title {
+        order: 2;
+        line-height: $line-height-medium;
+        overflow: hidden;
+        margin-bottom: 0.25em;
+        word-wrap: break-word;
+      }
+      &:before {
+        // This avoids an issue with nested links by layering links instead
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+
+    .subcategory-box-inner {
+      border: 1px solid var(--primary-low);
+      border-left: none;
+      padding: 0.5em 0.5em 0.4em 0.5em;
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: 0.75em;
+    }
+
+    .subcategory {
+      margin-bottom: 0.25em;
+    }
+  }
+
+  .subcategories {
+    display: flex;
+    flex-flow: wrap;
+    .subcategory {
+      display: flex;
+      align-items: center;
+      @include ellipsis;
+      margin-bottom: 0.6em;
+      .badge-wrapper {
+        overflow: hidden;
+      }
+      .subcategory-image-placeholder {
+        display: inline-block;
+        margin-right: 0.6em;
+        flex: 1 0 auto;
+      }
+      .subcategory-link {
+        min-width: 0;
+        @include ellipsis;
+      }
+      .logo img {
+        display: inline-block;
+        --height: 20px;
+        height: var(--height);
+        width: calc(var(--height) * var(--aspect-ratio));
+        margin: 0;
+      }
+    }
+  }
+}
+
+.category-boxes-with-topics {
+  .category-box {
+    width: 31%;
+    margin: 0 1% 1.5em 1%;
+    padding: 0;
+  }
+
+  h3 {
+    font-size: $font-up-2;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .category-box-heading {
+    margin-bottom: 0.5em;
+    a[href] {
+      width: 100%;
+      color: var(--primary);
+    }
+  }
+
+  .featured-topics {
+    margin-bottom: 1em;
+    ul {
+      color: var(--primary-medium);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      padding: 4px 0;
+      display: flex;
+      align-items: baseline;
+      a {
+        @include line-clamp(2);
+      }
+      .d-icon {
+        margin-right: 0.15em;
+        width: 0.76em;
+        height: 0.76em;
+      }
+    }
+  }
+}
+
+.categories-list .category {
+  h3,
+  h4 {
+    margin-bottom: 0;
+    .d-icon {
+      color: var(--primary-high);
+      height: 0.76em;
+      width: 0.76em;
+      vertical-align: baseline;
+      margin-right: 0.1em;
+    }
+  }
+  .category-description {
+    margin-top: 0.5em;
+    overflow: hidden;
+    color: var(--primary-high);
+  }
+  .category-logo.aspect-image {
+    margin-top: 0.5em;
+  }
+}
+
+.category-boxes-with-topics,
+.category-boxes {
+  .category-box h3 .d-icon {
+    margin-right: 0;
+  }
+}
+
+.category-list.subcategories-with-subcategories {
+  margin-top: 1em;
+  margin-bottom: 0;
+  border-top: 1px solid var(--primary-low);
+  .category-description {
+    font-size: $font-down-1;
+  }
+  .category-logo.aspect-image {
+    --max-height: 75px;
+  }
+}
+
+.category-list .category.muted {
+  > h3 a.category-title-link,
+  > h4 a.category-title-link {
+    color: var(--primary-medium);
+    font-size: $font-down-1;
+  }
+  > .category-description,
+  tr.category-description {
+    display: none;
+  }
+}
+
+.category-list {
+  tbody {
+    .category {
+      &.no-category-style {
+        border-color: transparent;
+        border-left: 0px;
+        padding-left: 0px;
+      }
+    }
+  }
+}
+
+.category-box.no-category-boxes-style {
+  border-left-width: 2px;
+}
+
+.muted-categories-link {
+  border: 1px solid var(--primary-low);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75em;
+  border-left-width: 6px;
+  border-right: none 0;
+  margin-left: -3px;
+
+  .d-icon {
+    color: var(--primary-medium);
+    margin-top: 0.25em;
+  }
+}
+
+.muted-categories-heading {
+  color: var(--primary-medium);
+  margin: 0;
+}
+
+.anon .muted-categories-link {
+  display: none;
+}
+
+.navigation-categories .category-list {
+  margin-bottom: 3em;
+
+  .category-list {
+    margin-bottom: 0;
+  }
+}

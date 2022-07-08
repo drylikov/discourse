@@ -1,0 +1,24 @@
+plugins:
+  poll_enabled:
+    default: true
+    client: true
+  poll_maximum_options:
+    default: 20
+    min: 2
+    max: 100
+    client: true
+  poll_edit_window_mins:
+    default: 5
+    min: 0
+  poll_minimum_trust_level_to_create:
+    default: 1
+    client: true
+    enum: "TrustLevelSetting"
+  poll_groupable_user_fields:
+    default: ""
+    type: list
+    client: true
+  poll_export_data_explorer_query_id:
+    default: -16
+    min: -9999
+    client: true

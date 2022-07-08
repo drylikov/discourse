@@ -1,0 +1,52 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+zh_CN:
+  site_settings:
+    poll_enabled: "允许投票？"
+    poll_maximum_options: "投票允许的最大选项数。"
+    poll_edit_window_mins: "创建帖子后可以编辑投票的分钟数。"
+    poll_minimum_trust_level_to_create: "定义创建投票所需的最低信任级别。"
+    poll_groupable_user_fields: "一组可用于对投票结果进行分组和筛选的用户字段名称。"
+    poll_export_data_explorer_query_id: "用于导出投票结果的数据资源管理器查询的 ID（0 将禁用）。"
+  poll:
+    poll: "投票"
+    invalid_argument: "参数 '%{argument}' 的值 '%{value}' 无效。"
+    multiple_polls_without_name: "有多个没有名称的投票。使用 '<code>name</code>' 特性对您的投票进行唯一标识。"
+    multiple_polls_with_same_name: "有多个投票的名称相同：<strong>%{name}</strong>。使用 '<code>name</code>' 特性对您的投票进行唯一标识。"
+    default_poll_must_have_at_least_1_option: "投票必须至少有 1 个选项。"
+    named_poll_must_have_at_least_1_option: "名为“<strong>%{name}</strong>”的投票必须至少有 1 个选项。"
+    default_poll_must_have_less_options:
+      other: "投票选项必须少于 %{count} 个。"
+    named_poll_must_have_less_options:
+      other: "名为“<strong>%{name}</strong>”的投票的选项必须少于 %{count} 个。"
+    default_poll_must_have_different_options: "投票必须具有不同的选项。"
+    named_poll_must_have_different_options: "名为“<strong>%{name}</strong>”的投票必须具有不同的选项。"
+    default_poll_must_not_have_any_empty_options: "投票不得包含任何空选项。"
+    named_poll_must_not_have_any_empty_options: "名为“<strong>%{name}</strong>”的投票不得包含任何空选项。"
+    default_poll_with_multiple_choices_has_invalid_parameters: "多选投票具有无效参数。"
+    named_poll_with_multiple_choices_has_invalid_parameters: "名为“<strong>%{name}</strong>”的多选投票具有无效参数。"
+    requires_at_least_1_valid_option: "您必须至少选择 1 个有效选项。"
+    edit_window_expired:
+      cannot_edit_default_poll_with_votes: "在创建 %{minutes} 分钟后，您将无法更改投票。"
+      cannot_edit_named_poll_with_votes: "在创建 %{minutes} 分钟后，您将无法更改投票名称“<strong>${name}</strong>”。"
+    no_poll_with_this_name: "没有与此帖子相关的名为“<strong>%{name}</strong>”的投票。"
+    post_is_deleted: "无法对已被删除的帖子执行操作。"
+    user_cant_post_in_topic: "您无法投票，因为您无法在此话题中发帖。"
+    topic_must_be_open_to_vote: "话题必须处于开放状态才能投票。"
+    poll_must_be_open_to_vote: "投票必须处于开放状态才能投票。"
+    one_vote_per_user: "本投票只允许投 1 票。"
+    max_vote_per_user:
+      other: 本次投票最多允许 %{count} 张投票。
+    min_vote_per_user:
+      other: 本投票需要至少有 %{count} 张投票。
+    topic_must_be_open_to_toggle_status: "话题必须处于开放状态才能切换状态。"
+    only_staff_or_op_can_toggle_status: "只有管理人员或者发布投票的人才能切换投票状态。"
+    insufficient_rights_to_create: "您无权创建投票。"
+    email:
+      link_to_poll: "点击以查看投票。"
+    user_field:
+      no_data: "无数据"

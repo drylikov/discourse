@@ -1,0 +1,324 @@
+// --------------------------------------------------
+// Buttons
+// --------------------------------------------------
+
+// Base
+// --------------------------------------------------
+
+@mixin btn(
+  $text-color: var(--primary),
+  $bg-color: var(--primary-low),
+  $icon-color: var(--primary-high),
+  $hover-text-color: var(--secondary),
+  $hover-bg-color: var(--primary-medium),
+  $hover-icon-color: var(--primary-low)
+) {
+  @include form-item-sizing;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-weight: normal;
+  color: $text-color;
+  background: $bg-color;
+  cursor: pointer;
+  transition: all 0.25s;
+  .d-icon {
+    color: $icon-color;
+    margin-right: 0.45em;
+    transition: color 0.25s;
+  }
+  .d-button-label + .d-icon {
+    margin-left: 0.45em;
+    margin-right: 0;
+  }
+  &.no-text {
+    .d-icon {
+      margin-right: 0;
+    }
+  }
+  @include hover {
+    background: $hover-bg-color;
+    color: $hover-text-color;
+    .d-icon {
+      color: $hover-icon-color;
+    }
+  }
+  &:focus {
+    outline: none;
+    background: $hover-bg-color;
+    color: $hover-text-color;
+    .d-icon {
+      color: $hover-icon-color;
+    }
+  }
+  &[href] {
+    color: $text-color;
+  }
+  &:active,
+  &.btn-active {
+    @include linear-gradient($hover-bg-color 0%, $bg-color 100%);
+    border-bottom-color: $bg-color;
+  }
+  &[disabled],
+  &.disabled {
+    &:not(.is-loading) {
+      opacity: 0.4;
+    }
+    &:hover {
+      color: $text-color;
+      background: $bg-color;
+      .d-icon {
+        color: $icon-color;
+      }
+    }
+    cursor: not-allowed;
+  }
+
+  .loading-container {
+    display: none;
+    margin: 0 6.75px 0 0;
+  }
+
+  &.is-loading {
+    &.btn-text {
+      .d-button-label {
+        font-size: $font-down-2;
+      }
+
+      &.btn-small {
+        .loading-icon {
+          font-size: $font-down-1;
+          margin-right: 0.2em;
+        }
+      }
+    }
+
+    .loading-icon {
+      -webkit-animation: rotate-forever 1s infinite linear, fadein 1s;
+      animation: rotate-forever 1s infinite linear, fadein 1s;
+    }
+  }
+}
+
+.btn.hidden {
+  display: none;
+}
+
+// Default button
+// --------------------------------------------------
+
+.btn {
+  @include btn;
+}
+
+// Primary button
+// --------------------------------------------------
+
+.btn-primary {
+  @include btn(
+    $text-color: var(--secondary),
+    $bg-color: var(--tertiary),
+    $icon-color: var(--secondary),
+    $hover-bg-color: var(--tertiary-hover),
+    $hover-icon-color: var(--secondary)
+  );
+}
+
+// Danger button
+// --------------------------------------------------
+
+.btn-danger {
+  @include btn(
+    $text-color: var(--secondary),
+    $bg-color: var(--danger),
+    $icon-color: var(--danger-low),
+    $hover-bg-color: var(--danger-hover),
+    $hover-icon-color: var(--danger-low)
+  );
+}
+
+// ✘ and ✔ buttons
+// --------------------------------------------------
+
+.btn.cancel {
+  @include btn(
+    $text-color: var(--secondary),
+    $bg-color: var(--danger),
+    $icon-color: var(--secondary),
+    $hover-bg-color: var(--danger-hover),
+    $hover-icon-color: var(--secondary)
+  );
+}
+
+.btn.ok {
+  @include btn(
+    $text-color: var(--secondary),
+    $bg-color: var(--success),
+    $icon-color: var(--secondary),
+    $hover-bg-color: var(--success-hover),
+    $hover-icon-color: var(--secondary)
+  );
+}
+
+// Social buttons
+// --------------------------------------------------
+
+.btn-social {
+  color: #000;
+  background: #fff;
+  border: 1px solid transparent;
+  &:hover,
+  &:focus {
+    box-shadow: shadow("card");
+    outline: 1px solid #000;
+  }
+  &[href] {
+    color: var(--secondary);
+  }
+  &:before {
+    margin-right: 9px;
+    font-size: $font-0;
+  }
+  .d-icon,
+  &.btn:hover .d-icon {
+    color: #000;
+  }
+  &.google_oauth2 {
+    background: var(--google);
+    color: #333;
+    // non-FA SVG icon for Google in login-buttons.hbs
+    .d-icon {
+      opacity: 0.9;
+    }
+    &:hover,
+    &:focus {
+      color: currentColor;
+    }
+  }
+
+  &.cas {
+    .d-icon {
+      color: var(--cas);
+    }
+    &:hover {
+      .d-icon {
+        color: var(--cas);
+      }
+    }
+  }
+  &.twitter {
+    .d-icon {
+      color: var(--twitter);
+    }
+    &:hover {
+      .d-icon {
+        color: var(--twitter);
+      }
+    }
+  }
+  &.github {
+    .d-icon {
+      color: var(--github);
+    }
+    &:hover {
+      .d-icon {
+        color: var(--github);
+      }
+    }
+  }
+  &.discord {
+    .d-icon {
+      color: var(--discord);
+    }
+    &:hover {
+      .d-icon {
+        color: var(--discord);
+      }
+    }
+  }
+}
+
+// Button Sizes
+// --------------------------------------------------
+
+// Small
+
+.btn-small {
+  font-size: var(--font-down-1);
+  min-height: 20px;
+}
+
+// Large
+
+.btn-large {
+  font-size: var(--font-up-1);
+}
+
+// Bonus Buttons
+// --------------------------------------------------
+
+.btn-flat {
+  background: transparent;
+  border: 0;
+  line-height: $line-height-small;
+  transition: color 0.25s, background 0.25s;
+  .d-icon {
+    color: var(--primary-low-mid);
+  }
+  @include hover {
+    background: transparent;
+    color: var(--primary);
+    .d-icon {
+      color: var(--primary);
+    }
+  }
+  &.close {
+    padding: 0;
+    background: transparent;
+    font-size: var(--font-up-3);
+    .d-icon {
+      color: var(--primary-high);
+    }
+    @include hover {
+      background: transparent;
+      .d-icon {
+        color: var(--primary);
+      }
+    }
+  }
+
+  &:focus {
+    outline: none;
+    background: var(--primary-low);
+    .d-icon {
+      color: var(--primary);
+    }
+  }
+}
+
+.btn-link {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--tertiary);
+}
+
+.btn-mini-toggle {
+  padding: 0.4em 0.467em;
+  .d-icon {
+    color: var(--primary-high);
+  }
+  @include hover {
+    background: transparent;
+    .d-icon {
+      color: var(--primary);
+    }
+  }
+  &:focus {
+    background: var(--primary-low);
+    .d-icon {
+      color: var(--primary);
+    }
+  }
+}

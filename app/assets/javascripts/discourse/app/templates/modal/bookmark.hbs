@@ -1,0 +1,8 @@
+{{#d-modal-body id="bookmark-reminder-modal"}}
+  {{bookmark model=model
+    afterSave=afterSave
+    afterDelete=afterDelete
+    onCloseWithoutSaving=onCloseWithoutSaving
+    registerOnCloseHandler=(action "registerOnCloseHandler")
+    closeModal=(action "closeModal")}}
+{{/d-modal-body}}

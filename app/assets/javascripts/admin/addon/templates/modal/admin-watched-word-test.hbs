@@ -1,0 +1,36 @@
+{{#d-modal-body rawTitle=(i18n "admin.watched_words.test.modal_title" action=model.name) class="watched-words-test-modal"}}
+  <p>{{i18n "admin.watched_words.test.description"}}</p>
+  {{textarea name="test_value" value=value autofocus="autofocus"}}
+  {{#if matches}}
+    <p>
+      {{i18n "admin.watched_words.test.found_matches"}}
+      <ul>
+        {{#if (or isReplace isLink)}}
+          {{#each matches as |match|}}
+            <li>
+              <span class="match">{{match.match}}</span>
+              &rarr;
+              <span class="replacement">{{match.replacement}}</span>
+            </li>
+          {{/each}}
+        {{else if isTag}}
+          {{#each matches as |match|}}
+            <li>
+              <span class="match">{{match.match}}</span>
+              &rarr;
+              {{#each match.tags as |tag|}}
+                <span class="tag">{{tag}}</span>
+              {{/each}}
+            </li>
+          {{/each}}
+        {{else}}
+          {{#each matches as |match|}}
+            <li>{{match}}</li>
+          {{/each}}
+        {{/if}}
+      </ul>
+    </p>
+  {{else}}
+    <p>{{i18n "admin.watched_words.test.no_matches"}}</p>
+  {{/if}}
+{{/d-modal-body}}

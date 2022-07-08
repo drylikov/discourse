@@ -1,0 +1,15 @@
+{{#unless topic.isPrivateMessage}}
+  {{bound-category-link topic.category recursive=true hideParent=true}}
+{{/unless}}
+<div class="topic-header-extra">
+  {{#if siteSettings.tagging_enabled}}
+    <div class="list-tags">
+      {{discourse-tags topic mode="list" tags=topic.tags}}
+    </div>
+  {{/if}}
+  {{#if siteSettings.topic_featured_link_enabled}}
+    {{topic-featured-link topic}}
+  {{/if}}
+</div>
+
+{{plugin-outlet name="topic-category" tagName="span" connectorTagName="div" args=(hash topic=topic category=topic.category)}}

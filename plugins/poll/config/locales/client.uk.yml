@@ -1,0 +1,130 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+uk:
+  js:
+    poll:
+      voters:
+        one: "виборця"
+        few: "виборців"
+        many: "виборців"
+        other: "проголосували"
+      total_votes:
+        one: "голос"
+        few: "голосів"
+        many: "голоси"
+        other: "голоси"
+      average_rating: "Середній рейтинг: <strong>%{average}</strong>."
+      public:
+        title: "Голоси <strong>публічні</strong> ."
+      results:
+        groups:
+          title: "Ви повинні бути учасником %{groups} для голосування в цьому опитуванні."
+        vote:
+          title: "Результати будуть показані при <strong>голосуванні</strong> ."
+        closed:
+          title: "Результати будуть показані після <strong>закриття</strong> ."
+        staff:
+          title: "Результати показуються лише <strong>співробітникам</strong> ."
+      multiple:
+        help:
+          at_least_min_options:
+            one: "Виберіть принаймні <strong>%{count}</strong> варіант."
+            few: "Виберіть принаймні <strong>%{count}</strong> варіанти."
+            many: "Виберіть принаймні <strong>%{count}</strong> варіантів."
+            other: "Виберіть принаймні <strong>%{count}</strong> варіанти."
+          up_to_max_options:
+            one: "Виберіть не більше як <strong>%{count}</strong> варіант."
+            few: "Виберіть не більше <strong>%{count}</strong> варіанти."
+            many: "Виберіть не більше <strong>%{count}</strong> варіантів."
+            other: "Виберіть не більше <strong>%{count}</strong> варіантів."
+          x_options:
+            one: "Виберіть <strong>%{count}</strong> варіант."
+            few: "Виберіть <strong>%{count}</strong> варіанти."
+            many: "Виберіть <strong>%{count}</strong> варіантів."
+            other: "Виберіть <strong>%{count}</strong> варіантів."
+          between_min_and_max_options: "Виберіть між <strong>%{min}</strong> і <strong>%{max}</strong> варіантами."
+      cast-votes:
+        title: "Проголосуйте"
+        label: "Проголосувати!"
+      show-results:
+        title: "Показати результати опитування"
+        label: "Показати результати"
+      remove-vote:
+        title: "Видалити свій голос"
+        label: "Вилучити голос"
+      hide-results:
+        title: "Назад до своїх голосів"
+        label: "Показати голосування"
+      group-results:
+        title: "Групувати голоси за полем користувача"
+        label: "Показати відбивку"
+      export-results:
+        title: "Експорт результатів опитування"
+        label: "Експорт"
+      open:
+        title: "Відкрити опитування"
+        label: "Відкрити"
+        confirm: "Ви впевнені, що хочете відкрити це опитування?"
+      close:
+        title: "Закрити опитування"
+        label: "Закрити"
+        confirm: "Ви впевнені, що хочете закрити це опитування?"
+      automatic_close:
+        closes_in: "Закривається в <strong>%{timeLeft}</strong> ."
+        age: "Закрито <strong>%{age}</strong>"
+      breakdown:
+        title: "Результати опитування"
+        votes: "%{count} голоси"
+        breakdown: "Розбивка"
+        percentage: "Відсоток"
+        count: "Кількість"
+      error_while_toggling_status: "На жаль, виникла помилка зміни статусу цього опитування."
+      error_while_casting_votes: "На жаль, сталася помилка під час голосування."
+      error_while_fetching_voters: "На жаль, під час відображення тих, хто проголосував, сталася помилка."
+      error_while_exporting_results: "На жаль, сталася помилка експорту результатів опитування."
+      ui_builder:
+        title: Створити опитування
+        insert: Вставити опитування
+        help:
+          options_min_count: Введіть принаймні 1 варіант.
+          options_max_count: Введіть не більше %{count} варіантів.
+          invalid_min_value: Мінімальне значення має бути не менше 1.
+          invalid_max_value: Максимальне значення має бути не менше 1, але менше або дорівнює кількості варіантів.
+          invalid_values: Мінімальне значення має бути меншим, ніж максимальне.
+          min_step_value: Мінімальне значення кроку 1
+        poll_type:
+          label: Тип
+          regular: Єдиний вибір
+          multiple: Широкий вибір
+          number: Рейтинг в цифрах
+        poll_result:
+          label: Показати результати...
+          always: Завжди видно
+          vote: Тільки після голосування
+          closed: Коли опитування закрито
+          staff: Для персоналу тільки
+        poll_groups:
+          label: Обмежити голосування цими групами
+        poll_chart_type:
+          label: Діаграма результатів
+          bar: Гістограма
+          pie: Кругова
+        poll_config:
+          max: Макс. вибір
+          min: Мін. вибір
+          step: Крок
+        poll_public:
+          label: Покажіть, хто проголосував
+        poll_title:
+          label: Заголовок (необов'язково)
+        poll_options:
+          label: Варіанти (по одному на рядок)
+          add: Додати варіант
+        automatic_close:
+          label: Автоматично закрити опитування
+        show_advanced: "Показати додаткові параметри"
+        hide_advanced: "Сховати додаткові параметри"

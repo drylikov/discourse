@@ -1,0 +1,15 @@
+a.hashtag {
+  color: var(--primary-or-primary-low-mid);
+  font-weight: bold;
+
+  &:visited,
+  &:hover {
+    color: var(--primary-or-primary-low-mid);
+  }
+
+  &:hover {
+    span {
+      text-decoration: underline;
+    }
+  }
+}

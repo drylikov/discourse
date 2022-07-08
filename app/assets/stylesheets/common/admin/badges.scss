@@ -1,0 +1,208 @@
+// Styles for admin/badges
+.admin-badges {
+  // flex page layout
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    .badges-header {
+      display: flex;
+      align-items: center;
+      flex: 1 0 100%;
+      .create-new-badge {
+        margin-left: auto;
+      }
+    }
+    .content-list {
+      flex: 0 0 27%;
+    }
+    .current-badges {
+      display: flex;
+      justify-content: center;
+      flex: 1 1 72%;
+    }
+  }
+  .badges-header {
+    padding: 10px 0;
+    border-top: 1px solid var(--primary-low);
+    border-bottom: 1px solid var(--primary-low);
+    .badges-heading {
+      margin: 0;
+      padding: 0 10px;
+    }
+  }
+  .content-list {
+    .admin-badge-list {
+      height: 70vh;
+      overflow-y: scroll;
+      border-right: 1px solid var(--primary-low);
+      border-left: 1px solid var(--primary-low);
+      border-bottom: 1px solid var(--primary-low);
+      .admin-badge-list-item {
+        &:first-child {
+          border-top: none;
+        }
+        &:last-child {
+          border-top: none;
+        }
+      }
+      .list-badge {
+        float: right;
+        font-size: $font-down-1;
+        font-weight: normal;
+        padding: 0 6px;
+        color: var(--secondary);
+        background-color: var(--tertiary-medium);
+        border-radius: 3px;
+      }
+    }
+    .user-badge {
+      border: none;
+      background-color: unset;
+    }
+  }
+  .current-badge {
+    margin: 20px;
+    p.help {
+      margin: 0;
+      margin-top: 5px;
+      color: var(--primary-medium);
+      font-size: $font-down-1;
+    }
+    .badge-grouping-control {
+      display: flex;
+      align-items: center;
+      .badge-selector {
+        margin-right: 5px;
+      }
+    }
+
+    .icon-picker {
+      width: 350px;
+    }
+  }
+  .current-badge {
+    .ace-wrapper {
+      position: relative;
+      height: 270px;
+      .ace_editor {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+      &[data-disabled="true"] {
+        cursor: not-allowed;
+        opacity: 0.5;
+        .ace_editor {
+          pointer-events: none;
+          .ace_cursor {
+            visibility: hidden;
+          }
+        }
+      }
+    }
+    textarea {
+      height: 200px;
+    }
+  }
+  .current-badge-actions {
+    margin: 10px;
+    padding: 10px;
+    border-top: 1px solid var(--primary-low);
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    button {
+      margin-right: 0.5em;
+    }
+    .saving {
+      order: 3;
+    }
+  }
+}
+
+.award-badge {
+  margin: 15px 0 0 15px;
+  float: left;
+  max-width: 70%;
+
+  .bulk-award-status-icon {
+    margin-right: 3px;
+
+    &.success {
+      color: var(--success);
+    }
+    &.failure {
+      color: var(--danger);
+    }
+  }
+
+  .badge-preview {
+    min-height: 110px;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-very-low);
+    border: 1px solid var(--primary-low);
+    padding: 0 10px 0 10px;
+
+    img,
+    svg {
+      width: 60px;
+      height: 60px;
+    }
+
+    .badge-display-name {
+      margin-left: 5px;
+    }
+  }
+  .badge-required {
+    font-weight: bold;
+  }
+}
+
+// badge-grouping modal
+.badge-groupings-modal {
+  .badge-groupings {
+    margin-bottom: 10px;
+  }
+  .badge-groupings-list {
+    list-style: none;
+    margin: 0;
+    .badge-grouping-item {
+      border-bottom: 1px solid var(--primary-low);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+    }
+    .badge-grouping {
+      .badge-grouping-name-input {
+        margin: 0;
+      }
+    }
+  }
+}
+
+// badge preview modal
+.badge-query-preview {
+  .badge-errors,
+  .badge-query-plan {
+    padding: 5px;
+    background-color: var(--primary-low);
+  }
+  .count-warning {
+    background-color: var(--danger-low);
+    margin-bottom: 5px;
+    padding: 10px;
+    p {
+      margin: 0;
+    }
+    .heading {
+      color: var(--danger);
+      font-weight: bold;
+    }
+  }
+}

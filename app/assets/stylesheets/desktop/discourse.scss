@@ -1,0 +1,184 @@
+// Desktop
+// global styles that apply to the Discourse application specifically
+// BEWARE: changing these styles implies they take effect anywhere they are seen
+// throughout the Discourse application
+
+// Base Elements
+body.widget-dragging {
+  cursor: ns-resize;
+}
+
+// Common classes
+.boxed {
+  height: 100%;
+}
+
+.form-vertical {
+  .control-group {
+    margin-bottom: 1.25em;
+  }
+  .controls:not(.controls-dropdown) + .controls {
+    margin-top: 0.5em;
+  }
+}
+
+/***********************/
+/* bootstrap carryover */
+/***********************/
+code,
+pre {
+  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono",
+    "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace;
+}
+
+// this removes the unwanted top margin on a paragraph under a heading
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  + p {
+    margin-top: 0;
+  }
+}
+
+form {
+  margin: 0 0 18px;
+}
+
+label,
+input,
+button,
+select,
+textarea {
+  font-size: $font-0;
+  font-weight: normal;
+  line-height: $line-height-medium;
+}
+
+select,
+textarea {
+  display: inline-block;
+  margin-bottom: 9px;
+  font-size: $font-0;
+  line-height: $line-height-large;
+  color: var(--primary);
+}
+
+input,
+textarea {
+  width: 210px;
+}
+
+select,
+input[type="file"] {
+  line-height: $line-height-large;
+}
+
+select {
+  width: 220px;
+  background: var(--secondary);
+
+  &[multiple],
+  &[size] {
+    height: auto;
+  }
+}
+
+input,
+textarea {
+  margin-left: 0;
+}
+
+input {
+  &[type="radio"],
+  &[type="checkbox"] {
+    &[disabled],
+    &[readonly] {
+      background-color: transparent;
+    }
+  }
+}
+
+.input {
+  &-xxlarge,
+  &-xxlarge + .control-instructions {
+    width: 530px;
+  }
+}
+
+.controls-dropdown {
+  margin-bottom: 10px;
+}
+
+.control-instructions {
+  color: var(--primary-medium);
+  font-size: 0.875rem;
+}
+
+.control-group {
+  margin-bottom: 9px;
+}
+
+.form-horizontal {
+  input[type="text"],
+  input[type="password"],
+  textarea {
+    margin-bottom: 0;
+  }
+
+  .control-group {
+    @include clearfix;
+    margin-bottom: 18px;
+  }
+
+  .control-indent {
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  .control-label {
+    margin: 6.5px;
+    float: left;
+    width: 140px;
+    text-align: right;
+    font-weight: bold;
+  }
+
+  .controls {
+    margin-left: 160px;
+  }
+}
+
+.bootbox.modal {
+  .modal-footer {
+    a.btn-primary {
+      color: var(--secondary);
+    }
+  }
+}
+
+/* bootstrap columns */
+
+.offset {
+  &2 {
+    margin-left: 116px;
+  }
+
+  &1 {
+    margin-left: 64px;
+  }
+}
+
+// Media Queries
+@media all and (max-width: 570px) {
+  body {
+    min-width: 0;
+  }
+
+  .wrap,
+  .full-width {
+    min-width: 0;
+  }
+}

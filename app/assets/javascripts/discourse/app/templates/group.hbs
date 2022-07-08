@@ -1,0 +1,86 @@
+{{plugin-outlet name="before-group-container" tagName="span" connectorTagName="div" args=(hash group=model)}}
+
+<div class="container group {{model.name}}">
+  {{#if showTooltip}}
+    <div class="group-delete-tooltip">
+      <p>{{i18n "admin.groups.delete_automatic_group"}}</p>
+    </div>
+  {{/if}}
+
+  <div class="group-details-container">
+    <div class="group-info">
+      {{#if (or model.flair_icon model.flair_url model.flair_bg_color)}}
+        <div class="group-avatar-flair">
+          {{avatar-flair
+            flairName=model.name
+            flairUrl=(or model.flair_icon model.flair_url)
+            flairBgColor=model.flair_bg_color
+            flairColor=model.flair_color
+          }}
+        </div>
+      {{/if}}
+
+      <div class="group-info-names">
+        <span class="group-info-name">{{groupName}}</span>
+
+        {{#if model.full_name}}<div class="group-info-full-name">{{model.name}}</div>{{/if}}
+      </div>
+
+      <div class="group-details-button">
+        {{group-membership-button
+          tagName=""
+          model=model
+          showLogin=(route-action "showLogin")
+        }}
+
+        {{#if currentUser.admin}}
+          {{#if model.automatic}}
+            {{d-button
+              action=(action "toggleDeleteTooltip")
+              class="btn-default"
+              icon="question-circle"
+              label="admin.groups.delete"
+            }}
+          {{else}}
+            {{d-button
+              action=(action "destroy")
+              disabled=destroying
+              icon="trash-alt"
+              class="btn-danger"
+              label="admin.groups.delete"
+            }}
+          {{/if}}
+        {{/if}}
+
+        {{#if displayGroupMessageButton}}
+          {{d-button
+            action=(action "messageGroup")
+            class="btn-primary group-message-button"
+            icon="envelope"
+            label="groups.message"
+          }}
+        {{/if}}
+      </div>
+
+      {{plugin-outlet name="group-details-after" tagName="span" connectorTagName="div" args=(hash model=model)}}
+    </div>
+
+    {{#if model.bio_cooked}}
+      <hr>
+
+      <div class="group-bio">
+        <p>{{html-safe model.bio_cooked}}</p>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="user-content-wrapper">
+    <section class="user-primary-navigation">
+      <div class="container">
+        {{group-navigation group=model currentPath=currentPath tabs=tabs}}
+      </div>
+    </section>
+
+    {{outlet}}
+  </div>
+</div>

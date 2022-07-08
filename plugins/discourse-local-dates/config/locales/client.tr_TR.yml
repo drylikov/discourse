@@ -1,0 +1,44 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+tr_TR:
+  js:
+    discourse_local_dates:
+      relative_dates:
+        today: Bugün %{time}
+        tomorrow: Yarın %{time}
+        yesterday: Dün %{time}
+        countdown:
+          passed: tarih geçti
+      title: Tarih/saat ekle
+      create:
+        form:
+          insert: Ekle
+          advanced_mode: Gelişmiş mod
+          simple_mode: Basit mod
+          format_description: "Tarihi kullanıcıya göstermek için kullanılan format. Saat dilimi adı için uzaklığı ve zz'yi göstermek için Z'yi kullanın."
+          timezones_title: Görüntülenecek zaman dilimleri
+          timezones_description: Saat dilimleri önizleme ve geri dönüş tarihlerini görüntülemek için kullanılacaktır.
+          recurring_title: Yinelenme
+          recurring_description: "Bu olayın ne kadar sürede tekrar edeceğini belirleyin.Bu seçeneği el ile düzenleyebilir veya aşağıdaki anahtarlardan birini kullanabilirsiniz: yıllar, aylar, haftalar, günler, saatler, dakikalar, saniyeler, milisaniyeler."
+          recurring_none: Tekrarlama yok
+          invalid_date: 'Geçersiz tarih: Tarih ve saatin doğru olduğundan emin olun!'
+          date_title: Tarih
+          time_title: Saat
+          format_title: Tarih formatı
+          timezone: Saat dilimi
+          until: A kadar...
+          current_timezone: "Geçerli saat dilimi:"
+          recurring:
+            every_day: "Her gün"
+            every_week: "Her hafta"
+            every_two_weeks: "İki haftada bir"
+            every_month: "Her ay"
+            every_two_months: "İki ayda bir"
+            every_three_months: "Üç ayda bir"
+            every_six_months: "Altı ayda bir"
+            every_year: "Her yıl"
+      default_title: "%{site_name} Etkinliği"

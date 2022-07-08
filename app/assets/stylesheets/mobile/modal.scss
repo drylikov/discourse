@@ -1,0 +1,128 @@
+// base styles for every modal popup used in Discourse
+
+.modal-open #main {
+  overflow: hidden;
+}
+
+.modal-middle-container {
+  max-width: 100%;
+  margin-bottom: 30px; // For iOS Safari issues
+}
+
+// Hardcode to be the same as before for now. I would recommend not using bootbox, or finding a way so the html structure can be the same
+.bootbox.modal {
+  top: 10%;
+  width: 100%;
+}
+
+.modal {
+  &.fade {
+    transition: opacity 0.3s linear, top 0.3s ease-out;
+    top: -25%;
+  }
+  &.fade.in {
+    top: 50%;
+  }
+  .modal-body {
+    padding: 0.667em;
+    overflow-y: scroll;
+
+    > * {
+      // adding box-sizing: border-box; to .modal-body causes iOS dropdown issues
+      box-sizing: border-box;
+    }
+  }
+}
+
+// we need a little extra room on mobile for the
+// stuff inside the footer to fit
+.modal-footer {
+  padding: 10px;
+}
+
+.modal-header {
+  padding: 10px;
+  h3 {
+    font-size: $font-up-2;
+  }
+}
+
+.close {
+  font-size: $font-up-4;
+}
+
+#choosing-topic {
+  p {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  .category-chooser {
+    margin-bottom: 9px;
+  }
+
+  button {
+    margin-top: 10px;
+    display: block;
+    width: 300px;
+  }
+
+  form {
+    margin-top: 20px;
+    input:not(.filter-input)[type="text"] {
+      box-sizing: border-box;
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-device-width: 568px) {
+  .modal .flag-modal-body .flag-message {
+    height: 3em;
+  }
+}
+
+/* fixes for the new account confirm dialog on mobile */
+
+.modal-inner-container {
+  margin-bottom: 20px;
+}
+
+/* fix for tall modals */
+
+.fixed-modal {
+  .modal-middle-container {
+    margin-bottom: 0;
+  }
+  .modal-inner-container {
+    max-height: 90vh;
+    overflow: auto;
+  }
+
+  &.insert-hyperlink-modal .modal-inner-container {
+    overflow: visible;
+  }
+}
+
+.modal .modal-body.reorder-categories {
+  max-height: calc(100vh - 220px);
+}
+
+.discard-draft-modal {
+  .modal-inner-container {
+    width: 250px;
+  }
+  .modal-footer {
+    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: stretch;
+
+    .btn {
+      margin-right: 0;
+    }
+  }
+}

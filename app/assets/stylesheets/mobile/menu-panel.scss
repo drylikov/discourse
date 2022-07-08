@@ -1,0 +1,65 @@
+.hamburger-panel .menu-panel.slide-in {
+  left: 0;
+  .panel-body {
+    display: block;
+  }
+  .panel-body-contents {
+    max-height: unset;
+  }
+}
+.header-cloak {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: black;
+  --opacity: 0.5;
+  opacity: var(--opacity);
+  top: 0;
+  left: 0;
+  display: none;
+  touch-action: pan-y pinch-zoom;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &.animate {
+      transition: opacity 0.1s linear;
+    }
+  }
+}
+
+.menu-panel.slide-in {
+  transform: translateX(var(--offset));
+  @media (prefers-reduced-motion: no-preference) {
+    &.animate {
+      transition: transform 0.1s linear;
+    }
+  }
+  &.moving,
+  &.animate {
+    // PERF: only render first 20 items in a list to allow for smooth
+    // pan events
+    li:nth-child(n + 20) {
+      display: none;
+    }
+  }
+}
+
+.user-menu .quick-access-panel.quick-access-profile li:not(.show-all) {
+  border-bottom: 1px solid var(--primary-low);
+
+  a,
+  button {
+    // accounts for menu "ears" 4px + border 1px
+    padding: 0.75em calc(0.5em + 4px + 1px);
+    margin: 0.25em;
+    @media screen and (max-height: 500px) {
+      // reduce padding to avoid scroll
+      padding-top: 0.25em;
+      padding-bottom: 0.25em;
+    }
+  }
+}
+
+.panel-body-contents {
+  // 2em padding very useful for iOS Safari's overlayed bottom nav
+  padding-bottom: calc(env(safe-area-inset-bottom) + 2em);
+}

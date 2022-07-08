@@ -1,0 +1,696 @@
+.wrap {
+  max-width: $large-width;
+}
+
+.full-width {
+  margin-left: 0;
+}
+
+.staff {
+  .topic-post:first-child {
+    nav.post-controls .post-admin-menu {
+      bottom: -125px;
+    }
+  }
+}
+
+.topic-body {
+  padding: 0;
+  &:first-of-type {
+    border-top: none;
+  }
+  .reply-to-tab {
+    z-index: z("base") + 1;
+    color: var(--primary-med-or-secondary-med);
+  }
+  .actions .fade-out {
+    .discourse-no-touch & {
+      opacity: 0.7;
+      transition: background 0.25s, opacity 0.7s ease-in-out;
+    }
+    .discourse-touch & {
+      opacity: 1;
+    }
+  }
+  &:hover .actions .fade-out,
+  .selected .actions .fade-out {
+    opacity: 1;
+  }
+}
+
+section.post-menu-area {
+  position: relative;
+  padding-left: 11px;
+}
+
+.post-links-container {
+  margin-left: 11px;
+}
+
+nav.post-controls {
+  // for consistency, try to control spacing by editing these variables
+  --control-margin: 0.33em;
+  --control-icon-space: 0.33em;
+  .actions {
+    button {
+      margin-left: var(--control-margin);
+      &.create {
+        margin-left: calc(var(--control-margin) * 1.52);
+        .d-icon {
+          margin-right: var(--control-icon-space);
+        }
+      }
+    }
+    // Some buttons can be doubled up, like likes or flags
+    .double-button {
+      margin-left: var(--control-margin);
+      &:hover {
+        button {
+          background: var(--primary-low);
+          color: var(--primary-medium);
+        }
+      }
+      button {
+        margin-left: 0;
+        margin-right: 0;
+        &.like {
+          // Like button with 0 likes
+          &.d-hover {
+            background: var(--love-low);
+            .d-icon {
+              color: var(--love);
+            }
+          }
+        }
+        &.has-like {
+          // Like button after I've liked
+          &.d-hover {
+            background: var(--primary-low);
+            .d-icon {
+              color: var(--primary-medium);
+            }
+          }
+        }
+        &.button-count {
+          // Like count button
+          &.d-hover {
+            color: var(--primary);
+          }
+          + .toggle-like {
+            // Like button when like count is present
+            &.d-hover {
+              background: var(--primary-low);
+            }
+          }
+        }
+      }
+    }
+  }
+  .show-replies {
+    margin-left: -11px; // negates padding-left on .cooked, for visual alignment
+    .d-icon {
+      margin-right: var(--control-icon-space);
+    }
+  }
+}
+
+pre.codeblock-buttons {
+  .copy-cmd:not(.action-complete),
+  .fullscreen-cmd:not(.action-complete) {
+    opacity: 0;
+    transition: 0.2s;
+    visibility: hidden;
+  }
+}
+
+pre.codeblock-buttons:hover {
+  .copy-cmd,
+  .fullscreen-cmd {
+    opacity: 0.7;
+    visibility: visible;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.embedded-posts {
+  h1,
+  h2,
+  h3 {
+    margin: 10px 0;
+  }
+  border: 1px solid var(--primary-low);
+  .topic-body {
+    box-sizing: border-box;
+    width: calc(100% - 70px); // [100% - .topic-avatar width]
+    // WARNING: overflow hide is required for quoted / embedded images
+    // which expect "normal" post width, but expansions are narrower
+    overflow: hidden;
+  } // this is covered by .topic-body .regular on a normal post
+  // but no such class structure exists for an embedded, expanded post
+  .cooked {
+    margin-top: 15px;
+  }
+  .topic-avatar {
+    padding-left: 25px;
+    padding-top: 15px;
+  }
+  .collapse-down,
+  .collapse-up {
+    position: absolute;
+    color: var(--primary-medium);
+    background: var(--secondary);
+    border: 1px solid var(--primary-low);
+    padding: 6px 9px 8px;
+    z-index: 99; // Needs to be higher than topic-avatar
+    .d-icon {
+      color: currentColor;
+    }
+    .discourse-no-touch & {
+      &:hover {
+        background: var(--primary-low);
+        color: var(--primary-high);
+        .d-icon {
+          color: currentColor;
+        }
+      }
+    }
+  } // bottom means "reply expansion" below a post
+  &.bottom {
+    border-top: none;
+    margin-bottom: 20px;
+    margin-left: 11px;
+    &.hidden {
+      display: block;
+      opacity: 0;
+    }
+  }
+  &.bottom {
+    .collapse-up {
+      transform: translate(-50%, -164%);
+    }
+    .row {
+      padding-bottom: 0.5em;
+      .topic-avatar,
+      .topic-body {
+        border-top: 1px solid var(--primary-low);
+      }
+    }
+  } // top means "in reply to expansion" above a post
+  &.top {
+    border-bottom: none;
+    .collapse-down {
+      transform: translate(-50%, 55%);
+    }
+    margin-left: 56px;
+    width: 699px;
+    .row {
+      border-bottom: none;
+      .topic-avatar,
+      .topic-body {
+        border-top: 1px solid var(--primary-low);
+      }
+    }
+  }
+  &.top.topic-body {
+    padding: 0;
+  }
+  .post-date {
+    color: var(--primary-med-or-secondary-high);
+  }
+  .d-icon-arrow-up,
+  .d-icon-arrow-down {
+    margin-left: 5px;
+  }
+  .reply:first-of-type .row {
+    border-top: none;
+  }
+  .topic-meta-data {
+    position: relative;
+  }
+  .topic-meta-data h5 {
+    position: absolute;
+    z-index: z("base");
+    font-size: $font-down-1;
+    a {
+      font-weight: bold;
+      color: var(--primary-low-mid-or-secondary-high);
+    }
+  }
+  .arrow {
+    color: var(--primary-med-or-secondary-high);
+  }
+}
+
+.post-action {
+  .relative-date {
+    margin-left: 5px;
+  }
+  .avatar {
+    margin-right: 2px;
+  }
+}
+
+.topic-map {
+  margin: 20px 0 20px 11px;
+  .map {
+    .secondary {
+      text-align: center;
+    }
+    li {
+      float: left;
+      padding: 7px 10px;
+      &:last-of-type {
+        border-right: 0;
+      }
+      &:nth-child(3) {
+        text-align: center;
+      }
+    }
+    .number {
+      color: var(--primary-high);
+    }
+    .number,
+    .d-icon {
+      font-size: $font-up-2;
+      line-height: $line-height-medium;
+    }
+    button .d-icon,
+    button:hover .d-icon {
+      color: var(--primary-high);
+    }
+    .avatar a {
+      float: left;
+    }
+    .topic-map-post {
+      margin-top: 6px;
+    }
+  }
+  .avatars,
+  .links,
+  .information {
+    padding: 7px 10px 7px 10px;
+    color: var(--primary);
+  }
+  .buttons {
+    float: right;
+    .btn {
+      border: 0;
+      padding: 0 23px;
+      color: var(--primary-med-or-secondary-high);
+      background: var(--blend-primary-secondary-5);
+      border-left: 1px solid var(--primary-low);
+      border-top: 1px solid transparent;
+      &:hover {
+        color: var(--primary);
+        background: var(--primary-low);
+      }
+      &.collapsed {
+        padding-bottom: 1px;
+      }
+      .fa {
+        margin: 0;
+        font-size: $font-up-2;
+        line-height: 52px;
+      }
+    }
+  }
+  .link-summary .btn {
+    color: var(--primary-med-or-secondary-high);
+    background: var(--blend-primary-secondary-5);
+    width: 100%;
+    &:hover {
+      color: var(--primary);
+      background: var(--primary-low);
+    }
+  }
+}
+
+#topic-footer-buttons {
+  max-width: calc(690px + (11px * 2) + 45px);
+
+  @media screen and (max-width: 924px) {
+    .topic-footer-main-buttons {
+      margin-top: 1em; // some extra space for the docked progress bar
+    }
+  }
+
+  .bookmark {
+    .d-icon-bookmark.bookmarked {
+      color: var(--tertiary);
+    }
+  }
+
+  .bookmark.bookmarked .d-icon-bookmark,
+  .bookmark.bookmarked .d-icon-discourse-bookmark-clock {
+    color: var(--tertiary);
+  }
+  .feature-on-profile.featured-on-profile .d-icon-id-card {
+    color: var(--tertiary);
+  }
+}
+
+.suggested-topics {
+  margin: 4.5em 0 1em;
+
+  table {
+    margin-top: 10px;
+  }
+}
+
+.suggested-topics .topic-statuses .topic-status {
+  padding: 0;
+  .d-icon {
+    font-size: 1em;
+  }
+}
+
+span.post-count {
+  background: var(--primary);
+  color: var(--secondary);
+  opacity: 0.8;
+}
+
+button.expand-post {
+  margin-top: 10px;
+  margin-left: $topic-body-width-padding;
+}
+
+iframe {
+  max-width: 100%;
+}
+
+video {
+  max-height: 500px;
+}
+
+.video {
+  // Height determined by aspect-ratio
+  max-height: 500px;
+  > video {
+    max-height: unset;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.btn-group {
+  position: relative;
+}
+
+.dropdown-toggle {
+  float: left;
+  position: relative;
+}
+
+.post-select {
+  float: right;
+  margin-right: 20px;
+  margin-top: -20px;
+}
+
+.deleted-user-avatar {
+  font-size: $font-up-6;
+}
+
+.info-line {
+  margin: 10px 0;
+  color: var(--primary);
+}
+
+/* solo quotes */
+
+blockquote {
+  /* leave browser defaults for top and bottom here */
+  margin-left: 0;
+  margin-right: 0;
+  padding: 12px;
+}
+
+/* quotes with attribution */
+
+.quote {
+  & > blockquote {
+    .onebox-result {
+      background-color: var(--primary-very-low);
+    }
+  }
+  aside {
+    .quote,
+    .title,
+    blockquote,
+    .onebox,
+    .onebox-result {
+      background: var(--primary-very-low);
+      border-left: 5px solid var(--primary-low);
+    }
+    aside.quote > blockquote,
+    aside.quote > .title {
+      border-left: 0;
+    }
+  }
+}
+
+.topic-post-visited {
+  + .topic-post {
+    .topic-avatar,
+    .topic-body {
+      border-top: none;
+    }
+  }
+}
+
+// variables are used to calculate the width of .gap
+.topic-body {
+  width: calc(#{$topic-body-width} + (#{$topic-body-width-padding} * 2));
+  float: left;
+  position: relative;
+  border-top: 1px solid var(--primary-low);
+  padding: 12px 0 0 0;
+  .topic-meta-data {
+    padding: 0 $topic-body-width-padding 0.25em $topic-body-width-padding;
+  }
+  .cooked {
+    padding: 1em $topic-body-width-padding 0.25em $topic-body-width-padding;
+  }
+  .group-request {
+    padding: 0.5em $topic-body-width-padding 0 $topic-body-width-padding;
+  }
+  a.expand-hidden {
+    padding-left: $topic-body-width-padding;
+  }
+}
+
+.topic-avatar {
+  border-top: 1px solid var(--primary-low);
+  padding-top: 15px;
+  width: $topic-avatar-width;
+  float: left;
+  z-index: z("base") + 1;
+}
+
+.gap {
+  box-sizing: border-box;
+}
+
+.topic-area > .loading-container {
+  // loader needs to be same width as posts
+  width: calc(
+    #{$topic-avatar-width} + #{$topic-body-width} +
+      (#{$topic-body-width-padding} * 2)
+  );
+  max-width: 100%;
+  @media all and (max-width: 790px) {
+    // 32px is (left + right padding * 2) from .wrap in common/base/discourse.scss
+    max-width: calc(100vw - 32px);
+  }
+}
+
+/* hide the reply border above the time gap notices */
+
+.time-gap + .topic-post .topic-body,
+.time-gap + .topic-post .topic-avatar {
+  border-top: none;
+}
+
+.time-gap + .topic-post .embedded-posts.top {
+  border-bottom: 1px solid var(--primary-low);
+}
+
+.posts-wrapper {
+  position: relative;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: 4px solid var(--primary);
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  content: "";
+  margin-left: 5px;
+}
+
+.selected-posts {
+  width: 200px;
+  position: fixed;
+  z-index: z("dropdown") + 1; // 1 higher than .select-posts
+  box-shadow: shadow("card");
+  padding: 0.714em;
+  margin-bottom: 5px;
+  right: 10px;
+  @include breakpoint(extra-large, min-width) {
+    right: auto;
+    margin-left: 330px;
+    left: 50%;
+  }
+  button {
+    width: 100%;
+    margin: 4px auto;
+    display: inline-block;
+    text-align: left;
+  }
+  &.hidden {
+    display: none;
+  }
+  .controls {
+    margin-top: 10px;
+  }
+  p {
+    font-size: $font-down-1;
+    margin: 0 0 10px 0;
+  }
+  p.cancel {
+    margin: 10px 0 0 0;
+  }
+  h3 {
+    font-size: $font-up-4;
+    color: var(--primary);
+    margin-bottom: 5px;
+    .d-icon {
+      margin-right: 7px;
+    }
+  }
+}
+
+a.attachment:before {
+  display: inline-block;
+  margin-right: 4px;
+  // ideally, the SVG used here should be in HTML and reference the SVG sprite
+  content: svg-uri(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="14px" height="16px" viewBox="0 0 512 512" fill="#{$tertiary}"><path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg>'
+  );
+  vertical-align: middle;
+}
+
+.topic-meta-data {
+  align-items: center;
+
+  .names {
+    display: flex;
+    align-items: center;
+  }
+
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+
+  .post-info {
+    a {
+      color: var(--primary-med-or-secondary-med);
+    }
+
+    a.wiki {
+      color: var(--wiki);
+    }
+  }
+}
+
+.who-liked,
+.who-read {
+  margin-top: 20px;
+  margin-bottom: 0;
+  width: 100%;
+  text-align: right;
+}
+
+span.highlighted {
+  background-color: var(--tertiary-low);
+}
+
+.first.new-user:not(.staff) a {
+  color: var(--primary-low-mid);
+}
+
+.read-state {
+  position: absolute;
+  // We use absolute positioning here because we want it to display in the padding
+  align-self: center;
+  color: var(--tertiary-medium);
+  right: 0;
+  font-size: 0.571em;
+}
+
+.read-state.read {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity ease-out 1s;
+}
+
+.topic-post.sticky-avatar {
+  .topic-avatar {
+    position: sticky;
+    top: calc(var(--header-offset) - 0.25em);
+    margin-bottom: 25px;
+  }
+}
+
+/* Tablet (portrait) ----------- */
+
+@media all and (max-width: 790px) {
+  .topic-avatar {
+    width: 45px;
+  }
+  .topic-post .reply-to-tab {
+    right: 15%;
+  }
+  .topic-body {
+    box-sizing: border-box;
+    width: calc(100% - 47px); //100% - [width of .topic-avatar + 2px]
+  }
+  .embedded-posts {
+    // top means "in reply to expansion" above a post
+    &.top {
+      width: calc(100% - 56px); // [100% - margin-left]
+    }
+  }
+}

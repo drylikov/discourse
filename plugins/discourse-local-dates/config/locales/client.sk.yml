@@ -1,0 +1,23 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+sk:
+  js:
+    discourse_local_dates:
+      create:
+        form:
+          insert: Vložiť
+          advanced_mode: Pokročilý režim
+          simple_mode: Jednoduchý režim
+          timezones_title: Časové pásma na zobrazenie
+          timezones_description: Časové pásma sa použijú na zobrazenie dátumov v náhľade a núdzových situáciách.
+          recurring_title: Opakovanie
+          recurring_description: "Definujte opakovanie udalosti. Môžete tiež manuálne upraviť opakovanú možnosť generovanú formulárom a použiť jeden z nasledujúcich kľúčov: roky, štvrťroky, mesiace, týždne, dni, hodiny, minúty, sekundy, milisekundy."
+          recurring_none: Žiadna opakovaná udalosť
+          invalid_date: Neplatný dátum, uistite sa, že dátum a čas sú správne
+          date_title: Dátum
+          time_title: Čas
+          format_title: Formát dátumu

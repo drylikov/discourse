@@ -1,0 +1,36 @@
+.body-page {
+  /* covers /about, /faq, /guidelines, /tos, /privacy, and login-required */
+  width: 100%;
+  max-width: 700px;
+  .about-page & {
+    max-width: unset;
+    section:not(.admins):not(.moderators):not(.category-moderators) {
+      max-width: 700px;
+    }
+    .about.category-moderators {
+      .badge-wrapper.bullet .badge-category {
+        color: var(--primary);
+      }
+    }
+  }
+  .mobile-view & {
+    font-size: $font-0;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+  .nav-pills {
+    margin: 0 0 2em;
+  }
+  ul:not(.nav-pills),
+  ol:not(.nav-pills) {
+    margin-left: 40px;
+  }
+}
+
+.body-page-button-container {
+  display: flex;
+  button {
+    margin-right: 0.75em;
+  }
+}

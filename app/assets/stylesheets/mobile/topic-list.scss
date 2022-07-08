@@ -1,0 +1,470 @@
+// --------------------------------------------------
+// Topic lists
+// --------------------------------------------------
+
+// List controls
+// --------------------------------------------------
+
+.list-controls {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    #create-topic {
+      box-sizing: border-box;
+      display: flex;
+      align-self: stretch;
+      align-items: center;
+    }
+  }
+
+  .dropdown-select-box-header {
+    display: flex;
+    height: 100%;
+  }
+
+  .navigation-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+
+    button {
+      &.select-kit-header {
+        display: flex;
+        height: 100%;
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  .nav-pills {
+    display: flex;
+    flex: 1 1 auto;
+    margin: 0 3px 5px 3px;
+    position: relative;
+    .navigation-toggle {
+      flex: 0 1 auto;
+    }
+    > li {
+      margin-right: 0;
+      font-size: $font-down-1;
+      border: 1px solid var(--primary-medium);
+    }
+    > li > a {
+      line-height: $line-height-large;
+      display: flex;
+      align-items: center;
+      .d-icon {
+        margin-left: 5px;
+        margin-right: 0;
+      }
+    }
+    .drop {
+      border: 1px solid var(--primary-low);
+      position: absolute;
+      z-index: z("dropdown") - 1;
+      background-color: var(--secondary);
+      padding: 0 10px 10px 10px;
+      width: 150px;
+      top: 100%;
+      margin: 0;
+      left: 0; // iOS6 alignment
+      li {
+        list-style-type: none;
+        margin-left: 0;
+        margin-top: 5px;
+        padding-top: 10px;
+        a {
+          width: 100%;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.list-container .full-width {
+  margin-left: 0;
+}
+
+.category-breadcrumb {
+  width: 100%;
+  gap: 0.5em;
+  li {
+    flex: 1 1 33%;
+    margin: 0;
+    details {
+      width: 100%;
+    }
+    .name,
+    .category-name {
+      @include ellipsis;
+    }
+  }
+}
+
+// Base list
+// --------------------------------------------------
+
+.topic-list {
+  .right {
+    margin-left: 55px;
+  }
+
+  .topic-list-data {
+    padding: 7px 0;
+    max-width: 300px;
+  }
+
+  .main-link {
+    line-height: $line-height-medium;
+    position: relative;
+    z-index: z("base") + 1; // Intentionally overlapping category to create bigger tap target
+    font-size: var(--font-up-1);
+    a.title {
+      color: var(--primary);
+      padding: 0.5em 0 1.2em 0;
+    }
+    .topic-statuses {
+      a {
+        line-height: 0.8;
+        color: var(--primary-medium);
+      }
+    }
+  }
+
+  .badge-notification,
+  .category-topic-link td.num .badge-notification {
+    position: relative;
+    display: inline-block;
+    top: -1px;
+    font-size: $font-0;
+    line-height: $line-height-small;
+    padding: 0.15em 0.4em 0.2em 0.4em;
+    .d-icon {
+      color: var(--secondary);
+    }
+
+    &.new-topic::before {
+      margin-right: 0;
+    }
+    &.new-topic {
+      padding: 0;
+    }
+  }
+
+  .category-topic-link td.num .badge-notification {
+    &.unread-posts {
+      color: var(--secondary);
+    }
+  }
+
+  .topic-item-stats {
+    position: relative;
+    margin-top: 0.5em;
+    z-index: z("base");
+    .category,
+    .num,
+    .last-poster {
+      float: left;
+    }
+    .category a {
+      max-width: 160px;
+    }
+    .num .fa,
+    a,
+    a:visited {
+      color: var(--primary-med-or-secondary-med);
+    }
+  }
+
+  .age {
+    white-space: nowrap;
+    a {
+      // let's make all ages dim on mobile so we're not
+      // overwhelming people with info about each topic
+      color: var(--primary-low-mid-or-secondary-high) !important;
+    }
+  }
+}
+
+// Category list
+// --------------------------------------------------
+.categories-list .category-list {
+  margin-bottom: 2em;
+
+  td {
+    padding: 12px 5px;
+    color: var(--primary-med-or-secondary-high);
+    vertical-align: top;
+  }
+
+  th {
+    padding: 10px 0 0;
+  }
+
+  td:first-of-type {
+    padding-left: 10px;
+  }
+
+  tbody {
+    border-top: none;
+    .category {
+      border-left: 6px solid;
+    }
+  }
+}
+
+.category-list-item.category {
+  tr:first-of-type {
+    border: none;
+  }
+  // Allow percentage widths on table cells to include their padding
+  box-sizing: border-box;
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  .posts {
+    vertical-align: top;
+  }
+
+  .age {
+    margin-left: 5px;
+  }
+
+  // numbers get dimmer as they get colder
+  .coldmap {
+    &-high {
+      opacity: 0.4;
+    }
+
+    &-med {
+      opacity: 0.6;
+    }
+
+    &-low {
+      opacity: 0.8;
+    }
+  }
+}
+
+.subcategory-list-item.category {
+  display: block;
+  width: calc(100% + 20px);
+  margin: 1.25em 10px 0;
+  border-bottom: none !important;
+  border-top: 1px solid var(--primary-low) !important;
+  &:last-of-type {
+    margin-top: 0;
+    margin-bottom: 1.25em;
+    border-bottom: 1px solid var(--primary-low) !important;
+  }
+  td:first-of-type {
+    padding: 12px 0px;
+  }
+  .category-logo.aspect-image {
+    display: none;
+  }
+  .subcategories {
+    padding-left: 10px;
+  }
+}
+
+tr.category-topic-link {
+  border-bottom: 1px solid var(--primary-low);
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.category-list-item,
+.subcategory-list-item {
+  padding: 0 0 0 3px;
+  border-left: 6px solid;
+
+  h3,
+  h4 {
+    max-width: 100%;
+    padding: 0 0 0 10px;
+    .d-icon {
+      margin-right: 5px;
+    }
+    a[href] {
+      color: var(--primary);
+    }
+  }
+
+  h3 {
+    font-size: $font-up-2;
+  }
+
+  h4 {
+    font-size: $font-up-1;
+  }
+
+  .category-name {
+    max-width: 80vw;
+  }
+
+  .category-topic-link .main-link,
+  .subcategories-list td,
+  .category-description td {
+    padding-left: 10px;
+  }
+
+  .category-topic-link .main-link .age {
+    font-size: $font-down-1;
+  }
+
+  .category-description td {
+    padding-top: 0;
+    padding-bottom: 15px;
+  }
+
+  .subcategories-list {
+    border-bottom: none;
+    td {
+      padding-top: 15px;
+    }
+  }
+
+  th .badge-category {
+    margin: 0;
+  }
+
+  .category-topic-link {
+    .num {
+      white-space: nowrap;
+    }
+    .topic-excerpt {
+      width: 110%;
+    }
+  }
+
+  .posters {
+    float: left;
+  }
+  > footer {
+    border-top: 1px solid var(--primary-low);
+    padding: 7px 10px;
+    .category-stat {
+      float: left;
+      margin: 3px 1em 0 0;
+      font-weight: normal;
+      font-size: $font-down-1;
+      .value {
+        font-weight: bold;
+      }
+    }
+    .btn {
+      float: right;
+      margin-left: 7px;
+    }
+  }
+}
+
+.category-list-item {
+  padding: 0.5em 0 0.25em;
+  border-top: 1px solid var(--primary-low) !important;
+  border-bottom: 1px solid var(--primary-low) !important;
+  margin: 1em 0 2em;
+}
+
+.category-box {
+  h3 {
+    margin: 0 0 0.5em 0;
+  }
+}
+
+.category-topics-count a {
+  color: var(--primary);
+}
+
+.topic-list-bottom {
+  margin: 20px 0 0 0;
+}
+
+// Misc. stuff
+// --------------------------------------------------
+
+.dropdown {
+  position: relative;
+}
+.dropdown-toggle:active,
+.open .dropdown-toggle {
+  outline: 0;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+.category-heading {
+  p {
+    font-size: $font-up-1;
+    margin-bottom: 0.75em;
+  }
+}
+
+.category-logo.aspect-image {
+  display: block;
+  margin: 1.5em 0 1em;
+  img {
+    max-width: 100%;
+  }
+}
+
+button.dismiss-read {
+  margin-bottom: 10px;
+}
+
+// base defines extra padding for easier click/top of title field
+// this is a bit too much for mobile
+td .main-link {
+  width: 78%;
+  display: inline-block;
+  a.title {
+    padding: 5px 10px 5px 0;
+    word-wrap: break-word;
+  }
+}
+.topic-list {
+  .num.posts-map {
+    font-size: $font-up-2;
+    padding: 0;
+    button {
+      padding: 0;
+    }
+  }
+  .num.activity a {
+    padding: 0;
+  }
+  // so the topic excerpt is full width
+  // as the containing div is 80%
+  .topic-excerpt {
+    display: block;
+    padding-right: 0;
+    width: 120%;
+  }
+
+  .topic-excerpt-more {
+    color: var(--tertiary);
+  }
+}
+
+.category-list.with-topics .category-list-item .category-description {
+  display: none;
+}
+
+.category-list .category.muted a.category-title-link {
+  color: var(--primary-medium);
+  font-size: $font-down-1;
+}
+
+.muted-categories-link {
+  margin-left: 0;
+}

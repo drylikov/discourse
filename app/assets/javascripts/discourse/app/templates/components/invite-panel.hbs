@@ -1,0 +1,108 @@
+{{#if inviteModel.error}}
+  <div class="alert alert-error">
+    {{html-safe errorMessage}}
+  </div>
+{{/if}}
+
+<div class="body">
+  {{#if inviteModel.finished}}
+    {{#if inviteModel.inviteLink}}
+      {{generated-invite-link link=inviteModel.inviteLink email=invitee}}
+    {{else}}
+      <div class="success-message">
+        {{html-safe successMessage}}
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="invite-user-control">
+      <label class="instructions">{{inviteInstructions}}</label>
+      <div class="invite-user-input-wrapper">
+        {{#if allowExistingMembers}}
+          {{email-group-user-chooser
+            class="invite-user-input"
+            value=invitee
+            onChange=(action "updateInvitee")
+            options=(hash
+              maximum=1
+              allowEmails=canInviteViaEmail
+              excludeCurrentUser=true
+              includeMessageableGroups=isPM
+              filterPlaceholder=placeholderKey
+              fullWidthWrap=true
+            )
+          }}
+        {{else}}
+          {{text-field
+            class="email-or-username-input"
+            value=invitee
+            placeholderKey="topic.invite_reply.email_placeholder"}}
+        {{/if}}
+        {{#if capabilities.hasContactPicker}}
+          {{d-button
+            icon="address-book"
+            action=(action "searchContact")
+            class="btn-primary open-contact-picker"
+          }}
+        {{/if}}
+      </div>
+    </div>
+
+    {{#if showGroups}}
+      <div class="group-access-control">
+        <label class="instructions {{showGroupsClass}}">
+          {{i18n "topic.automatically_add_to_groups"}}
+        </label>
+        {{group-chooser
+          content=allGroups
+          value=groupIds
+          labelProperty="name"
+          onChange=(action (mut groupIds))
+        }}
+      </div>
+    {{/if}}
+
+    {{#if showCustomMessage}}
+      <div class="show-custom-message-control">
+        <label class="instructions">
+          {{discourse-linked-text
+            class="optional"
+            action=(action "showCustomMessageBox")
+            text="invite.custom_message"}}
+        </label>
+        {{#if hasCustomMessage}}
+          {{textarea value=customMessage placeholder=customMessagePlaceholder}}
+        {{/if}}
+      </div>
+    {{/if}}
+  {{/if}}
+
+  {{#if showApprovalMessage}}
+    <label class="instructions approval-notice">
+      {{i18n "invite.approval_not_required"}}
+    </label>
+  {{/if}}
+</div>
+
+<div class="footer">
+  {{#if inviteModel.finished}}
+    {{d-button
+      class="btn-primary"
+      action=(action "sendCloseModal")
+      label="close"}}
+  {{else}}
+    {{d-button
+      icon=inviteIcon
+      action=(action "createInvite")
+      class="btn-primary send-invite"
+      disabled=disabled
+      label=buttonTitle}}
+    {{#if showCopyInviteButton}}
+      {{d-button
+        icon="link"
+        action=(action "generateInviteLink")
+        class="btn-primary generate-invite-link"
+        disabled=disabledCopyLink
+        label="user.invited.generate_link"}}
+    {{/if}}
+  {{/if}}
+</div>

@@ -1,0 +1,13 @@
+{{#if item.icon}}
+  <div class="future-date-input-selector-icons">
+    {{d-icon item.icon}}
+  </div>
+{{/if}}
+
+<span class="name">{{label}}</span>
+
+{{#if item.timeFormatted}}
+  <span class="future-date-input-selector-datetime">
+    {{item.timeFormatted}}
+  </span>
+{{/if}}

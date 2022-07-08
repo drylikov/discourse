@@ -1,0 +1,14 @@
+<td>{{user-info user=item.user}}</td>
+{{#each columns as |column|}}
+  <td>
+    {{#if (directory-column-is-user-field column=column)}}
+      {{directory-item-user-field-value item=item column=column}}
+    {{else}}
+      {{directory-item-value item=item column=column}}
+    {{/if}}
+  </td>
+{{/each}}
+
+{{#if showTimeRead}}
+  <td><span class="time-read">{{format-duration item.time_read}}</span></td>
+{{/if}}

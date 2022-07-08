@@ -1,0 +1,15 @@
+plugins:
+  discourse_local_dates_email_format:
+    default: "YYYY-MM-DDTHH:mm:ss[Z]"
+    client: true
+  discourse_local_dates_enabled:
+    default: true
+    client: true
+  discourse_local_dates_default_formats:
+    default: "LLL|LTS|LL|LLLL"
+    client: true
+    type: list
+  discourse_local_dates_default_timezones:
+    default: "Europe/Paris|America/Los_Angeles"
+    client: true
+    type: list

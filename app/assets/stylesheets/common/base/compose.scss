@@ -1,0 +1,571 @@
+#reply-control {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  height: 0;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $reply-area-max-width;
+  width: 100%;
+  &.hide-preview {
+    max-width: 740px;
+  }
+  @media screen and (max-width: 1200px) {
+    min-width: 0;
+  }
+  z-index: z("composer", "content");
+  transition: height 250ms ease, background 250ms ease, transform 250ms ease,
+    max-width 250ms ease, padding-bottom 250ms ease;
+  background-color: var(--secondary);
+  box-shadow: shadow("composer");
+
+  .reply-area {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .saving-text,
+  .draft-text {
+    display: none;
+    padding-left: 8px;
+
+    .spinner {
+      margin-left: 8px;
+      border-color: var(--secondary);
+      border-right-color: transparent;
+    }
+    .d-icon {
+      color: var(--secondary);
+    }
+  }
+
+  &.open {
+    height: 300px;
+    &.edit-title {
+      height: 400px; // more room when editing the title
+    }
+  }
+
+  &.closed {
+    height: 0 !important;
+  }
+
+  &.draft,
+  &.saving {
+    height: 40px !important;
+    align-items: center;
+    background: var(--tertiary);
+    color: var(--secondary);
+    flex-direction: row;
+    justify-content: space-between;
+
+    .composer-controls {
+      display: flex;
+      gap: 8px;
+      padding-right: 8px;
+
+      .toggle-toolbar {
+        display: none;
+      }
+
+      .d-icon {
+        color: var(--secondary);
+      }
+    }
+  }
+
+  &.draft {
+    cursor: pointer;
+    display: flex;
+    .draft-text {
+      display: block;
+    }
+    .grippie,
+    .saving-text {
+      display: none;
+    }
+    .toggle-minimize {
+      order: 2;
+    }
+  }
+
+  &.saving .saving-text {
+    display: flex;
+  }
+
+  .reply-to {
+    color: var(--primary-high);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .reply-details {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      white-space: nowrap;
+
+      .d-icon {
+        color: var(--primary-medium);
+      }
+    }
+    .composer-action-title {
+      display: flex;
+      align-items: center;
+      width: auto;
+      max-width: 100%;
+
+      .avatar {
+        width: 20px;
+      }
+
+      .action-title {
+        line-height: normal;
+        @include ellipsis;
+      }
+
+      .topic-link,
+      .user-link,
+      .post-link {
+        margin-right: 8px;
+      }
+
+      .username {
+        margin-right: 5px;
+        max-width: 100px;
+        @include ellipsis;
+        @media screen and (max-width: 500px) {
+          display: none;
+        }
+      }
+
+      .d-icon {
+        margin-right: 8px;
+      }
+
+      img.avatar {
+        margin-right: 3px;
+      }
+    }
+
+    .composer-controls {
+      display: flex;
+      gap: 8px;
+      margin-left: 8px;
+
+      .d-icon {
+        color: var(--primary-medium);
+      }
+
+      .toggle-minimize {
+        order: 2;
+      }
+    }
+  }
+
+  .whisper,
+  .display-edit-reason {
+    font-style: italic;
+  }
+
+  .whisper {
+    margin: 0 0.25em;
+  }
+
+  .unlist {
+    margin-left: 0.25em;
+  }
+
+  .display-edit-reason {
+    display: inline-flex;
+    a {
+      display: inline-flex;
+    }
+    .d-icon {
+      padding: 0.3em 0.5em;
+      color: var(--tertiary);
+    }
+  }
+
+  #edit-reason {
+    margin: 0 4px;
+  }
+
+  .user-selector,
+  .title-and-category {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    position: relative;
+  }
+
+  .user-selector {
+    margin-bottom: 8px;
+  }
+
+  .title-input {
+    position: relative;
+    display: flex;
+    flex: 1 1 50%;
+
+    input {
+      flex-grow: 1;
+    }
+  }
+
+  .with-tags {
+    .title-input {
+      flex: 1 1 100%;
+    }
+
+    .archetype-private_message & {
+      // PMs don's have categories, so we need a wider tag input
+      .mini-tag-chooser {
+        width: 100%;
+      }
+    }
+  }
+
+  .category-input {
+    display: flex;
+    flex: 1 0 40%;
+    max-width: 40%;
+    margin: 0 0 8px 8px;
+
+    .category-chooser {
+      display: flex;
+      flex: 1 0 auto;
+      max-width: 100%;
+      width: auto;
+
+      .select-kit-header {
+        color: var(--primary-high);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      // below needed for text-overflow: ellipsis;
+      .selected-name {
+        max-width: 100%;
+        overflow: hidden;
+        .name {
+          max-width: 100%;
+          overflow: hidden;
+          display: flex;
+          .badge-wrapper {
+            overflow: hidden;
+          }
+          // This prevents the first category from being too-truncated at the expense of a long subcategory
+          .badge-wrapper:first-of-type:not(:last-of-type) {
+            flex: 1 0 auto;
+            max-width: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  .with-tags {
+    .title-and-category {
+      flex-wrap: wrap;
+    }
+
+    .category-input {
+      margin-left: 0;
+      margin-bottom: 8px;
+      min-width: 0; // allows flex to shrink
+      flex-wrap: wrap;
+      max-width: calc(50% - 4px);
+    }
+  }
+
+  .add-warning {
+    color: var(--primary-high);
+    padding-left: 8px;
+    margin-bottom: 0;
+    display: flex;
+
+    input {
+      margin-right: 8px;
+    }
+  }
+
+  #reply-title {
+    margin-bottom: 8px;
+    flex-basis: 50%;
+    width: unset;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .mini-tag-chooser {
+    flex-grow: 1;
+    max-width: calc(50% - 4px);
+    margin: 0 0 8px 8px;
+    z-index: z("composer", "dropdown");
+
+    .select-kit-header {
+      color: var(--primary-high);
+    }
+  }
+
+  .wmd-controls {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+  }
+
+  .submit-panel {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .save-or-cancel {
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+
+    .btn-primary {
+      flex: 0 0 auto;
+    }
+
+    .cancel {
+      align-items: center;
+      display: flex;
+      margin-left: 1.25em;
+      line-height: normal;
+      color: var(--primary-high);
+      transition: color 250ms;
+
+      &:hover,
+      &:focus {
+        outline: none;
+        color: var(--danger);
+      }
+    }
+
+    #draft-status,
+    #file-uploading {
+      margin-left: 25px;
+    }
+    #file-uploading {
+      display: flex;
+      align-items: center;
+      a {
+        margin-left: 5px;
+        color: var(--primary-high);
+      }
+      .spinner {
+        margin-right: 5px;
+      }
+    }
+    #draft-status .d-icon-user-edit {
+      color: var(--danger);
+      font-size: 20px;
+      vertical-align: -5.5px;
+    }
+  }
+
+  #draft-status,
+  #file-uploading {
+    color: var(--primary-high);
+  }
+
+  #file-uploader {
+    display: none;
+  }
+}
+
+.autocomplete {
+  z-index: z("composer", "dropdown") + 1;
+  position: absolute;
+  width: 240px;
+  background-color: var(--secondary);
+  border: 1px solid var(--primary-low);
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      .d-icon-users {
+        color: var(--primary-medium);
+        padding: 0 2px;
+      }
+
+      border-bottom: 1px solid var(--primary-low);
+
+      a {
+        padding: 5px;
+        display: block;
+        @include ellipsis;
+
+        span.username {
+          color: var(--primary);
+        }
+        span.name {
+          font-size: $font-down-1;
+          vertical-align: middle;
+        }
+        &.selected {
+          background-color: var(--tertiary-low);
+        }
+        @include hover {
+          background-color: var(--highlight-low);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+div.ac-wrap.disabled {
+  input {
+    display: none;
+  }
+  .item a {
+    display: none;
+  }
+}
+
+div.ac-wrap div.item a.remove,
+.remove-link {
+  margin-left: 4px;
+  font-size: $font-down-1;
+  line-height: $line-height-small;
+  padding: 1px 3.5px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--primary-low);
+  &:hover {
+    background-color: var(--danger-low);
+    border: 1px solid var(--danger-medium);
+    text-decoration: none;
+    color: var(--danger);
+  }
+}
+
+div.ac-wrap {
+  max-height: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 30px;
+  box-sizing: border-box;
+  div.item {
+    float: left;
+    padding: 4px 10px;
+    line-height: $line-height-large;
+    span {
+      display: inline-block;
+      line-height: $line-height-medium;
+    }
+  }
+
+  .ac-collapsed-button {
+    float: left;
+    border-radius: 20px;
+    position: relative;
+    top: -2px;
+    margin-right: 10px;
+  }
+
+  input[type="text"] {
+    float: left;
+    &.fullwidth-input {
+      width: 100%;
+    }
+  }
+}
+
+.md-table {
+  overflow-y: auto;
+  margin: 1em 0;
+  .mobile-view & {
+    table {
+      width: 100%;
+    }
+  }
+}
+
+@-webkit-keyframes transformer {
+  90% {
+    -webkit-filter: opacity(1);
+  }
+  100% {
+    -webkit-filter: opacity(0);
+  }
+}
+@keyframes transformer {
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+body.ios-safari-composer-hacks {
+  #main-outlet,
+  header,
+  .grippie,
+  html:not(.fullscreen-composer) & .toggle-fullscreen {
+    display: none;
+  }
+
+  #reply-control {
+    top: 0px;
+    &.open {
+      height: calc(var(--composer-vh, 1vh) * 100);
+    }
+  }
+}
+
+body:not(.ios-safari-composer-hacks) {
+  #reply-control.open {
+    --min-height: 255px;
+    min-height: var(--min-height);
+    max-height: calc(100vh - var(--header-offset, 4em));
+    &.composer-action-reply {
+      // we can let the reply composer get a little shorter
+      min-height: calc(var(--min-height) - 4em);
+    }
+    padding-bottom: var(--composer-ipad-padding);
+  }
+}
+
+.show-preview {
+  @media screen and (max-width: 850px) {
+    .d-editor-button-bar {
+      font-size: $font-down-1;
+    }
+  }
+}
+
+.toggle-preview {
+  margin-left: 8px;
+  transition: all 0.33s ease-out;
+
+  &.active {
+    transform: rotate(180deg);
+  }
+
+  .d-icon {
+    color: var(--primary-medium);
+  }
+}
+
+.draft-error {
+  color: var(--danger);
+}

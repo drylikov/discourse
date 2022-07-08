@@ -1,0 +1,34 @@
+{{#if displayCount}}
+  <a href={{url}} title={{i18n "badges.granted" count=displayCount}} class="grant-count">{{displayCount}}</a>
+{{/if}}
+{{#if badge.has_badge}}
+  <a href={{url}} class="check-display status-checked">{{d-icon "check"}}</a>
+{{/if}}
+
+{{#if canFavorite}}
+  {{#if isFavorite}}
+    {{d-button
+      icon="star"
+      class="favorite-btn"
+      action=onFavoriteClick
+    }}
+  {{else}}
+    {{d-button
+      icon="far-star"
+      class="favorite-btn"
+      action=onFavoriteClick
+      title=(if canFavoriteMoreBadges "badges.favorite_max_not_reached" "badges.favorite_max_reached")
+      disabled=(not canFavoriteMoreBadges)
+    }}
+  {{/if}}
+{{/if}}
+
+<div class="badge-contents">
+  <a href={{url}} class="badge-icon {{badge.badgeTypeClassName}}">{{icon-or-image badge}}</a>
+  <div class="badge-info">
+    <div class="badge-info-item">
+      <h3><a href={{url}} class="badge-link">{{badge.name}}</a></h3>
+      <div class="badge-summary">{{html-safe summary}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+// Common styles for "user-stream-item" component
+.user-stream {
+  // DEPRECATED:
+  // The ".item" class should be removed because it's too generic.
+  // Once ".item" has been removed, ".user-stream-item" can replace
+  // ".user-stream" as the top-level selector on this file as all other
+  // selectors below are its children
+  .item,
+  .user-stream-item {
+    background-color: var(--secondary);
+    border-bottom: 1px solid var(--primary-low);
+    padding: 1em 0.53em;
+    list-style: none;
+
+    &.moderator-action {
+      background-color: var(--highlight-medium);
+    }
+
+    &.deleted {
+      background-color: var(--danger-low-mid);
+    }
+
+    &.hidden {
+      display: block;
+      opacity: 0.4;
+    }
+  }
+
+  .type,
+  span.name {
+    color: var(--primary);
+  }
+
+  .time,
+  .delete-info,
+  .draft-type {
+    float: right;
+    color: var(--primary-medium);
+    font-size: $font-down-2;
+  }
+
+  .notification .time {
+    margin-left: auto;
+    float: none;
+  }
+
+  .draft-type {
+    clear: right;
+  }
+
+  .delete-info .d-icon {
+    font-size: $font-0;
+  }
+
+  .expand-item,
+  .collapse-item {
+    float: right;
+    margin-right: 0.5em;
+    line-height: $line-height-small;
+    color: var(--primary-medium);
+  }
+
+  .avatar-link {
+    float: left;
+    margin-right: 4px;
+  }
+
+  .title {
+    @include ellipsis;
+    display: block;
+  }
+
+  .name {
+    font-size: $font-0;
+    max-width: 400px;
+    @include ellipsis;
+  }
+
+  .edit-reason {
+    background-color: var(--highlight-medium);
+    padding: 3px 5px 5px 5px;
+  }
+
+  .remove-bookmark,
+  .remove-draft {
+    float: right;
+    margin-top: -4px;
+  }
+
+  .notification {
+    li {
+      display: inline-block;
+    }
+
+    p {
+      display: inline-block;
+
+      span:first-child {
+        color: var(--primary);
+      }
+    }
+
+    // common/base/header.scss
+    .fa,
+    .icon {
+      color: var(--primary-med-or-secondary-med);
+      font-size: $font-up-4;
+    }
+  }
+
+  .excerpt {
+    margin: 1em 0 0 0;
+    font-size: $font-0;
+    word-wrap: break-word;
+    color: var(--primary);
+    &:empty {
+      display: none;
+    }
+    details.disabled {
+      color: var(--primary-medium);
+    }
+  }
+
+  .group-member-info {
+    display: flex;
+  }
+}
+
+.user-stream .child-actions, /* DEPRECATED: '.user-stream .child-actions' selector*/
+.user-stream-item-actions,
+.user-stream-item-draft-actions {
+  margin-top: 8px;
+
+  .avatar-link {
+    float: none;
+    margin-right: 3px;
+  }
+
+  .fa {
+    width: 15px;
+    display: inline-block;
+    color: var(--primary);
+    &.d-icon-heart {
+      color: var(--love);
+    }
+    &.d-icon-far-trash-alt {
+      color: var(--secondary);
+    }
+  }
+}

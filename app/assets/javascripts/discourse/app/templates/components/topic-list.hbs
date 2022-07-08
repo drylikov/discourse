@@ -1,0 +1,61 @@
+{{#unless skipHeader}}
+  <thead class="topic-list-header">
+    {{raw "topic-list-header"
+      canBulkSelect=canBulkSelect
+      toggleInTitle=toggleInTitle
+      hideCategory=hideCategory
+      showPosters=showPosters
+      showLikes=showLikes
+      showOpLikes=showOpLikes
+      order=order
+      ascending=ascending
+      sortable=sortable
+      listTitle=listTitle
+      bulkSelectEnabled=bulkSelectEnabled
+      canDoBulkActions=canDoBulkActions
+    }}
+  </thead>
+{{/unless}}
+
+{{plugin-outlet
+  name="before-topic-list-body"
+  args=(hash
+    topics=topics
+    selected=selected
+    bulkSelectEnabled=bulkSelectEnabled
+    lastVisitedTopic=lastVisitedTopic
+    discoveryList=discoveryList
+    hideCategory=hideCategory)
+ }}
+
+<tbody class="topic-list-body">
+  {{#each filteredTopics as |topic index|}}
+    {{topic-list-item topic=topic
+                      bulkSelectEnabled=bulkSelectEnabled
+                      showTopicPostBadges=showTopicPostBadges
+                      hideCategory=hideCategory
+                      showPosters=showPosters
+                      showLikes=showLikes
+                      showOpLikes=showOpLikes
+                      expandGloballyPinned=expandGloballyPinned
+                      expandAllPinned=expandAllPinned
+                      lastVisitedTopic=lastVisitedTopic
+                      selected=selected
+                      lastChecked=lastChecked
+                      tagsForUser=tagsForUser
+                      focusLastVisitedTopic=focusLastVisitedTopic
+                      index=index}}
+    {{raw "list/visited-line" lastVisitedTopic=lastVisitedTopic topic=topic}}
+  {{/each}}
+</tbody>
+
+{{plugin-outlet
+  name="after-topic-list-body"
+  args=(hash
+    topics=topics
+    selected=selected
+    bulkSelectEnabled=bulkSelectEnabled
+    lastVisitedTopic=lastVisitedTopic
+    discoveryList=discoveryList
+    hideCategory=hideCategory)
+ }}

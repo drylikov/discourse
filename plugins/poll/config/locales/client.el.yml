@@ -1,0 +1,99 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+el:
+  js:
+    poll:
+      voters:
+        one: "ψηφοφόρος"
+        other: "ψηφοφόροι"
+      total_votes:
+        one: "συνολική ψήφος"
+        other: "συνολικές ψήφοι"
+      average_rating: "Μέση βαθμολογία: <strong>%{average}</strong>."
+      public:
+        title: "Οι ψήφοι είναι <strong>δημόσιες</strong>."
+      results:
+        groups:
+          title: "Πρέπει να είστε μέλος του %{groups} για να ψηφίσετε σε αυτήν τη δημοσκόπηση."
+        vote:
+          title: "Τα αποτελέσματα θα εμφανιστούν με την<strong>ψήφο</strong>."
+        closed:
+          title: "Τα αποτελέσματα θα εμφανιστούν μόλις <strong>κλείσουν</strong>."
+        staff:
+          title: "Τα αποτελέσματα εμφανίζονται μόνο σε μέλη του <strong>προσωπικού</strong>."
+      multiple:
+        help:
+          at_least_min_options:
+            one: "Επιλέξτε τουλάχιστον <strong>%{count}</strong> επιλογή."
+            other: "Επιλέξτε τουλάχιστον <strong>%{count}</strong> επιλογές."
+          up_to_max_options:
+            one: "Επιλέξτε μέχρι <strong>%{count}</strong> επιλογή."
+            other: "Επιλέξτε μέχρι <strong>%{count}</strong> επιλογές."
+          x_options:
+            one: "Επιλέξτε <strong>%{count}</strong> επιλογή."
+            other: "Επιλέξτε <strong>%{count}</strong> επιλογές."
+          between_min_and_max_options: "Επιλέξτε μεταξύ <strong>%{min}</strong> και <strong>%{max}</strong> επιλογές."
+      cast-votes:
+        title: "Δώστε τις ψήφους σας"
+        label: "Ψηφίστε τώρα!"
+      show-results:
+        title: "Εμφάνισε τα αποτελέσματα της ψηφοφορίας"
+        label: "Εμφάνισε τα αποτελέσματα"
+      hide-results:
+        title: "Πίσω στις ψήφους σας"
+        label: "Εμφάνιση ψήφων"
+      group-results:
+        title: "Ομαδοποίηση ψήφων ανά πεδίο χρήστη"
+        label: "Εμφάνιση ανάλυσης"
+      export-results:
+        title: "Εξαγάγετε τα αποτελέσματα της δημοσκόπησης"
+        label: "Εξαγωγή"
+      open:
+        title: "Να ξεκινήσει η ψηφοφορία"
+        label: "Ξεκίνημα"
+        confirm: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την ψηφοφορία;"
+      close:
+        title: "Να κλείσει η ψηφοφορία"
+        label: "Κλείσιμο"
+        confirm: "Είστε βέβαιοι ότι θέλετε να κλείσετε αυτήν την ψηφοφορία;"
+      automatic_close:
+        closes_in: "Κλείνει σε <strong>%{timeLeft}</strong>."
+        age: "Κλειστό <strong>%{age}</strong>"
+      breakdown:
+        title: "Αποτελέσματα ψηφοφορίας"
+        votes: "%{count} ψήφοι"
+        breakdown: "Ανάλυση"
+        percentage: "Ποσοστό"
+        count: "Άθροισμα"
+      error_while_toggling_status: "Λυπάμαι, παρουσιάστηκε σφάλμα κατά την εναλλαγή της κατάστασης αυτής της δημοσκόπησης."
+      error_while_casting_votes: "Λυπάμαι, παρουσιάστηκε ένα σφάλμα κατά την ψηφοφορία."
+      error_while_fetching_voters: "Συγνώμη, παρουσιάστηκε ένα σφάλμα κατά τη διαδικασία εμφάνισης των ψηφοφόρων."
+      error_while_exporting_results: "Λυπάμαι, παρουσιάστηκε σφάλμα κατά την εξαγωγή αποτελεσμάτων δημοσκόπησης."
+      ui_builder:
+        title: Δημιουργία ψηφοφορίας
+        insert: Εισαγωγή ψηφοφορίας
+        help:
+          options_min_count: Επιλέξτε τουλάχιστον 1 επιλογή.
+          invalid_values: Η ελάχιστη τιμή θα πρέπει να είναι μικρότερη από τη μέγιστη τιμή.
+          min_step_value: Η ελάχιστη τιμή για το βήμα είναι 1
+        poll_type:
+          label: Τύπος
+          regular: Μία επιλογή
+          multiple: Πολλαπλές επιλογές
+          number: Αξιολόγηση αριθμoύ
+        poll_result:
+          always: Πάντα ορατό
+          staff: Μόνο το προσωπικό
+        poll_chart_type:
+          bar: Μπάρες
+          pie: Πίτα
+        poll_config:
+          step: Βήμα
+        poll_public:
+          label: Προβολή ψηφοφόρων.
+        automatic_close:
+          label: Αυτόματο κλείσιμο ψηφοφορίας

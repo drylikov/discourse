@@ -1,0 +1,87 @@
+$meta-element-margin: 6px;
+
+.lightbox-wrapper .lightbox {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  &:hover .meta {
+    opacity: 0.9;
+    transition: opacity 0.5s;
+  }
+}
+
+.d-lazyload-hidden {
+  box-sizing: border-box;
+}
+
+.onebox img.d-lazyload-hidden:not(.ytp-thumbnail-image) {
+  border: 1px solid var(--primary-low);
+}
+
+.cooked img.d-lazyload:not(.animated) {
+  transition: opacity 0.4s 0.75s ease;
+}
+
+.lightbox-wrapper {
+  display: inline-block;
+  img {
+    object-fit: cover;
+    object-position: top;
+  }
+  &,
+  * {
+    outline: 0;
+  }
+}
+
+.meta {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: var(--secondary);
+  background: var(--primary);
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+
+  .filename {
+    margin: $meta-element-margin;
+    @include ellipsis;
+  }
+
+  .d-icon {
+    margin: $meta-element-margin;
+    opacity: 0.8;
+    color: var(--secondary);
+    + .filename {
+      margin-left: 0px;
+    }
+  }
+
+  .informations {
+    margin: $meta-element-margin;
+    padding-right: 20px;
+    color: var(--secondary-high);
+    font-size: $font-0;
+    flex-shrink: 0;
+    flex-grow: 3;
+  }
+}
+
+.mfp-preloader .spinner {
+  margin: auto;
+}
+
+.discourse-no-touch {
+  a.lightbox {
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  a.lightbox:hover {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(var(--always-black-rgb), 0.2),
+      0 2px 10px 0 rgba(var(--always-black-rgb), 0.2);
+  }
+}

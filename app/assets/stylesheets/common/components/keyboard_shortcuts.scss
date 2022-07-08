@@ -1,0 +1,81 @@
+.topic-list-item td:first-child,
+.topic-post {
+  border-left: 1px solid transparent;
+}
+
+.topic-list tr.selected td:first-child,
+.topic-list-item.selected td:first-child,
+.latest-topic-list-item.selected,
+.search-results .fps-result.selected {
+  box-shadow: inset 3px 0 0 var(--danger); // needs to be inset for Edge
+}
+
+.featured-topic.selected,
+.topic-post.selected {
+  box-shadow: -3px 0 0 var(--danger);
+}
+
+.tabLoc:focus {
+  outline: none;
+}
+
+.latest .featured-topic {
+  padding-left: 4px;
+}
+
+.topic-list-item.selected {
+  background-color: inherit;
+}
+
+.keyboard-shortcuts-modal .modal-body {
+  max-height: 560px;
+}
+
+.keyboard-shortcuts-modal .modal-inner-container {
+  max-width: 880px;
+}
+
+#keyboard-shortcuts-help {
+  display: grid;
+  grid-gap: 0.5em 1.25em;
+  grid-template-columns: repeat(3, 1fr);
+  &:focus {
+    outline: none;
+  }
+
+  @for $i from 1 through 25 {
+    .span-#{$i} {
+      grid-row-end: span $i;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: 2rem;
+    margin-left: 0;
+
+    li {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    span {
+      background: var(--primary-very-low);
+      border-radius: 3px;
+      display: inline-flex;
+      margin: 0 6px;
+      padding: 2px 1px 4px;
+    }
+
+    span:first-child {
+      margin-left: 0;
+    }
+
+    kbd {
+      font-family: $base-font-family;
+      font-weight: bold;
+    }
+  }
+}

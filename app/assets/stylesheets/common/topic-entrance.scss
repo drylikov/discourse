@@ -1,0 +1,27 @@
+#topic-entrance {
+  border: 1px solid var(--primary-low);
+  padding: 5px;
+  background: var(--secondary);
+  box-shadow: shadow("card");
+  z-index: z("dropdown");
+
+  position: absolute;
+  width: 133px;
+  @include unselectable;
+
+  button.full {
+    width: 100%;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+
+    .d-icon {
+      display: block;
+      margin: 2px auto;
+      width: 100%;
+      transform: rotate(90deg);
+    }
+  }
+  button.btn.jump-bottom {
+    margin: 5px 0 0 0;
+  }
+}

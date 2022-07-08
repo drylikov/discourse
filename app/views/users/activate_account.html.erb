@@ -1,0 +1,18 @@
+<div id='simple-container'>
+    <h2><%= t 'activation.welcome_to', site_name: SiteSetting.title %></h2>
+    <br/>
+    <button class='btn btn-primary' id='activate-account-button'><%= t 'activation.action' %></button>
+
+    <%= form_tag(perform_activate_account_path, method: :put, id: 'activate-account-form') do %>
+      <%= hidden_field_tag 'password_confirmation' %>
+      <%= hidden_field_tag 'challenge' %>
+    <% end %>
+</div>
+
+<%- content_for(:no_ember_head) do %>
+  <%= preload_script "vendor" %>
+  <%= render_google_universal_analytics_code %>
+  <%= tag.meta id: 'data-activate-account', data: { path: path('/session/hp') } %>
+<%- end %>
+
+<%= preload_script "activate-account" %>

@@ -1,0 +1,37 @@
+@keyframes slidein {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.popup-tip {
+  @include form-item-sizing;
+  position: absolute;
+  z-index: z("composer", "dropdown") + 1;
+  cursor: pointer;
+  animation: 0.15s slidein 3;
+
+  &.bad {
+    background: var(--danger-medium);
+    color: white;
+    box-shadow: shadow("dropdown");
+  }
+  &.hide,
+  &.good {
+    display: none;
+  }
+  .d-icon {
+    color: var(--primary);
+    opacity: 0.5;
+    font-size: var(--font-0);
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

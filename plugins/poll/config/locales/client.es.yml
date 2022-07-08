@@ -1,0 +1,120 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+es:
+  js:
+    poll:
+      voters:
+        one: "votante"
+        other: "votantes"
+      total_votes:
+        one: "voto total"
+        other: "total de votos"
+      average_rating: "Puntuación media: <strong>%{average}</strong>."
+      public:
+        title: "Los votos son <strong>públicos</strong>."
+      results:
+        groups:
+          title: "Necesitas ser parte del grupo %{groups} para votar en esta encuesta."
+        vote:
+          title: "Los resultados se mostrarán cuando <strong>votes</strong>."
+        closed:
+          title: "Los resultados se mostrarán una vez que la encuesta esté <strong>cerrada</strong>."
+        staff:
+          title: "Los resultados solo se muestran a miembros del <strong>equipo</strong>."
+      multiple:
+        help:
+          at_least_min_options:
+            one: "Selecciona al menos <strong>%{count}</strong> opción."
+            other: "Selecciona al menos <strong>%{count}</strong> opciones."
+          up_to_max_options:
+            one: "Selecciona como máximo <strong>%{count}</strong> opción."
+            other: "Selecciona como máximo <strong>%{count}</strong> opciones."
+          x_options:
+            one: "Selecciona <strong>%{count}</strong> opción."
+            other: "Selecciona <strong>%{count}</strong> opciones."
+          between_min_and_max_options: "Selecciona de <strong>%{min}</strong> a <strong>%{max}</strong> opciones."
+      cast-votes:
+        title: "Emite tus votos"
+        label: "Votar"
+      show-results:
+        title: "Mostrar los resultados de la encuesta"
+        label: "Mostrar resultados"
+      remove-vote:
+        title: "Retirar tu voto"
+        label: "Retirar voto"
+      hide-results:
+        title: "Volver a tus votos"
+        label: "Mostrar votos"
+      group-results:
+        title: "Agrupar votos por campo de usuario"
+        label: "Mostrar desglose"
+      export-results:
+        title: "Exportar los resultados de la encuesta"
+        label: "Exportar"
+      open:
+        title: "Abrir la encuesta"
+        label: "Abrir"
+        confirm: "¿Quieres abrir esta encuesta?"
+      close:
+        title: "Cerrar la encuesta"
+        label: "Cerrar"
+        confirm: "¿Quieres cerrar esta encuesta?"
+      automatic_close:
+        closes_in: "Cierra en <strong>%{timeLeft}</strong>."
+        age: "Cerrado <strong>%{age}</strong>"
+      breakdown:
+        title: "Resultados de la encuesta"
+        votes: "%{count} votos"
+        breakdown: "Desglose"
+        percentage: "Porcentaje"
+        count: "Cantidad"
+      error_while_toggling_status: "Lo sentimos, se ha producido un error al cambiar el estado de esta encuesta."
+      error_while_casting_votes: "Lo sentimos, se ha producido un error al emitir tus votos."
+      error_while_fetching_voters: "Lo sentimos, se produjo un error al mostrar los votantes."
+      error_while_exporting_results: "Lo sentimos, ha habido un error al exportar los resultados de la encuesta."
+      ui_builder:
+        title: Crear encuesta
+        insert: Insertar encuesta
+        help:
+          options_min_count: Introduce al menos 1 opción.
+          options_max_count: Introduce al menos %{count} opciones.
+          invalid_min_value: El valor mínimo debe ser al menos 1.
+          invalid_max_value: El valor mínimo debe ser al menos 1, pero menor o igual que el número de opciones.
+          invalid_values: El valor mínimo debe ser menor que el valor máximo.
+          min_step_value: El valor mínimo es 1
+        poll_type:
+          label: Tipo
+          regular: Una opción
+          multiple: Múltiples opciones
+          number: Valoración numérica
+        poll_result:
+          label: Ver resultados...
+          always: Siempre visible
+          vote: Solo después de votar
+          closed: Cuando se cierre la encuesta
+          staff: Solo personal
+        poll_groups:
+          label: Solo permitir votar a estos grupos
+        poll_chart_type:
+          label: Gráfico de resultados
+          bar: Barras
+          pie: Tarta
+        poll_config:
+          max: Máximo de opciones
+          min: Mínimo de opciones
+          step: Intervalo
+        poll_public:
+          label: Mostrar quién votó
+        poll_title:
+          label: Título (opcional)
+        poll_options:
+          label: Opciones (una por línea)
+          add: Añadir opción
+        automatic_close:
+          label: Cerrar encuesta automáticamente
+        show_advanced: "Mostrar opciones avanzadas"
+        hide_advanced: "Ocultar opciones avanzadas"

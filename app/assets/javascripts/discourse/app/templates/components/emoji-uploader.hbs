@@ -1,0 +1,46 @@
+<div class="emoji-uploader form-horizontal">
+  <div class="control-group">
+    <span class="label">
+      {{i18n "admin.emoji.name"}}
+    </span>
+    <div class="input">
+      {{input
+        id="emoji-name"
+        name="name"
+        placeholderKey="admin.emoji.name"
+        value=(readonly name)
+        input=(action (mut name) value="target.value")
+      }}
+    </div>
+  </div>
+  <div class="control-group">
+    <span class="label">
+      {{i18n "admin.emoji.group"}}
+    </span>
+    <div class="input">
+      {{combo-box
+        name="group"
+        id="emoji-group-selector"
+        value=group
+        content=newEmojiGroups
+        onChange=(action "createEmojiGroup")
+        valueProperty=null
+        nameProperty=null
+        options=(hash
+          allowAny=true
+        )
+      }}
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="input">
+      <input
+        class="hidden-upload-field"
+        disabled={{uploading}}
+        type="file"
+        multiple="true"
+        accept=".png,.gif">
+      {{d-button class="btn-primary" computedLabel=buttonLabel icon="plus" action=(action "chooseFiles") disabled=uploading}}
+    </div>
+  </div>
+</div>
